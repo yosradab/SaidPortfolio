@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Said BOUZIDI — Electrical Design Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+  <div class="cur" id="cur"></div>
+  <div class="cur-ring" id="curRing"></div>
+  <div id="pb"></div>
+
+  <!-- ═══ HEADER ═══ -->
+  <header>
+    <a href="#hero" class="logo">Said <span>BOUZIDI</span></a>
+    <nav>
+      <a href="#profile"><span class="lang-en">Profile</span><span class="lang-fr">Profil</span></a>
+      <a href="#skills"><span class="lang-en">Skills</span><span class="lang-fr">Compétences</span></a>
+      <a href="#experience"><span class="lang-en">Journey</span><span class="lang-fr">Parcours</span></a>
+      <a href="#projects-section"><span class="lang-en">Works</span><span class="lang-fr">Projets</span></a>
+      <a href="#education"><span class="lang-en">Education</span><span class="lang-fr">Formation</span></a>
+    </nav>
+    <div class="hctrl">
+      <span class="lang-en"><a href="CV/Said_Bouzidi-ANG.pdf" class="ctrl" title="Download CV" download
+          target="_blank"><i class="fas fa-file-pdf"></i></a></span>
+      <span class="lang-fr"><a href="CV/SAID_BOUZIDI.pdf" class="ctrl" title="Télécharger CV" download
+          target="_blank"><i class="fas fa-file-pdf"></i></a></span>
+      <button class="ctrl" id="langBtn" title="Switch language"><i class="fas fa-globe"></i></button>
+      <button class="ctrl" id="themeBtn" title="Toggle theme"><i class="fas fa-circle-half-stroke"></i></button>
+      <button class="ctrl" id="menuBtn" title="Menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <div class="m-nav" id="mNav">
+    <a href="#profile" class="m-link"><span class="lang-en">Profile</span><span class="lang-fr">Profil</span></a>
+    <a href="#skills" class="m-link"><span class="lang-en">Skills</span><span class="lang-fr">Compétences</span></a>
+    <a href="#experience" class="m-link"><span class="lang-en">Journey</span><span class="lang-fr">Parcours</span></a>
+    <a href="#projects-section" class="m-link"><span class="lang-en">Works</span><span
+        class="lang-fr">Projets</span></a>
+    <a href="#education" class="m-link"><span class="lang-en">Education</span><span class="lang-fr">Formation</span></a>
+  </div>
+
+  <main>
+
+    <!-- ═══ HERO ═══ -->
+    <section id="hero">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="hero-tag">
+            <span class="lang-en">01 — Electrical harness design engineer</span>
+            <span class="lang-fr">01 — Ingénieur concepteur de harnais électrique</span>
+          </div>
+          <h1 class="hero-title">
+            SAID<br>
+            <span class="accent-line">BOUZIDI</span>
+          </h1>
+          <p class="hero-desc">
+            <span class="lang-en">Specializing in 3D harness design, embedded systems integration, Low voltage and high
+              voltage electrical architecture, and high-voltage electrical architecture — for aerospace and automotive
+              industries.</span>
+            <span class="lang-fr">Spécialisé dans la conception 3D de faisceaux, l'intégration de systèmes embarqués,
+              l'architecture électrique basse tension et haute tension, et l'architecture électrique haute tension —
+              pour les secteurs de l'aérospatiale et de l'automobile.</span>
+          </p>
+          <div class="hero-actions">
+            <a href="#projects-section" class="btn btn-primary">
+              <span class="lang-en">View Work</span><span class="lang-fr">Voir Projets</span>
+            </a>
+            <a href="#experience" class="btn btn-outline">
+              <span class="lang-en">My Journey</span><span class="lang-fr">Mon Parcours</span>
+            </a>
+            <span class="lang-en">
+              <a href="CV/Said_Bouzidi-ANG.pdf" class="btn btn-ghost" download target="_blank">
+                <i class="fas fa-file-download"></i>
+                Download CV
+              </a>
+            </span>
+            <span class="lang-fr">
+              <a href="CV/SAID_BOUZIDI.pdf" class="btn btn-ghost" download target="_blank">
+                <i class="fas fa-file-download"></i>
+                Télécharger CV
+              </a>
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="photo-wrap">
+            <div class="photo-frame">
+              <img src="assets/photoProfile.png" alt="Said BOUZIDI">
+            </div>
+          </div>
+          <div class="badge-avail">
+            <div class="badge-dot"></div>
+            <span class="lang-en">Available for work</span>
+            <span class="lang-fr">Disponible pour travailler</span>
+          </div>
+          <div class="hero-stats">
+            <div class="hstat">
+              <div class="hstat-n">3+</div>
+              <div class="hstat-l"><span class="lang-en">Years Exp.</span><span class="lang-fr">Ans Exp.</span></div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-n">2</div>
+              <div class="hstat-l"><span class="lang-en">Industries</span><span class="lang-fr">Secteurs</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll rv d4">
+        <span class="lang-en">Scroll to explore ↓</span>
+        <span class="lang-fr">Défiler pour explorer ↓</span>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ═══ PROFILE ═══ -->
+    <section id="profile" class="section">
+      <div class="ch"><span class="lang-en">02 — About</span><span class="lang-fr">02 — À Propos</span></div>
+      <h2 class="stitle rv">
+        <span class="lang-en">Engineering with<br><em>precision</em> &amp; purpose</span>
+        <span class="lang-fr">Concevoir avec<br><em>précision</em> &amp; intention</span>
+      </h2>
+      <div class="profile-grid">
+        <p class="profile-text rv d1">
+          <span class="lang-en">I am an Electrical Designer with 3 years of experience in the aerospace and automotive
+            industries. I specialize in 3D design, electrical harness routing, and embedded systems integration. Skilled
+            in Siemens NX, CATIA V5, and E3 Zuken, I create efficient, safety-compliant designs that meet the highest
+            industry standards.<br><br>My experience spans the full product lifecycle — from initial concept routing to
+            production documentation — using PLM systems to ensure seamless data management. I thrive in
+            cross-functional, international environments and bring a detail-oriented approach to every project.</span>
+          <span class="lang-fr">Je suis Concepteur électrique avec 3 ans d'expérience dans les industries aérospatiale
+            et automobile. Spécialisé dans la conception 3D, le routage de faisceaux et l'intégration de systèmes
+            embarqués, je maîtrise Siemens NX, CATIA V5 et E3 Zuken pour créer des designs efficaces et conformes aux
+            normes de sécurité.<br><br>Mon expérience couvre l'ensemble du cycle de vie produit — de la conception
+            initiale à la documentation de production — via les systèmes PLM. Je m'épanouis dans des environnements
+            internationaux et apporte une approche rigoureuse à chaque projet.</span>
+        </p>
+        <div class="spec-list rv d2">
+          <div class="spec-item">
+            <div class="spec-ico"><i class="fas fa-plane"></i></div>
+            <div>
+              <div class="spec-label"><span class="lang-en">Harness Design</span><span class="lang-fr">Conception de
+                  Faisceaux</span></div>
+              <div class="spec-sub"><span class="lang-en">Business &amp; Premium Class Seats</span><span
+                  class="lang-fr">Sièges Business &amp; Premium</span></div>
+            </div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-ico"><i class="fas fa-car-side"></i></div>
+            <div>
+              <div class="spec-label"><span class="lang-en">Automotive Design</span><span class="lang-fr">Design
+                  Automobile</span></div>
+              <div class="spec-sub">HV &amp; LV Harness Architecture</div>
+            </div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-ico"><i class="fas fa-diagram-project"></i></div>
+            <div>
+              <div class="spec-label">PLM &amp; Integration</div>
+              <div class="spec-sub"><span class="lang-en">Data &amp; Workflow Management</span><span
+                  class="lang-fr">Gestion des Données &amp; Flux</span></div>
+            </div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-ico"><i class="fas fa-microchip"></i></div>
+            <div>
+              <div class="spec-label"><span class="lang-en">Embedded Systems</span><span class="lang-fr">Systèmes
+                  Embarqués</span></div>
+              <div class="spec-sub"><span class="lang-en">Sensor Integration &amp; R&D</span><span
+                  class="lang-fr">Intégration Capteurs &amp; R&D</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ═══ SKILLS ═══ -->
+    <section id="skills" class="section">
+      <div class="ch"><span class="lang-en">03 — Technical Skills</span><span class="lang-fr">03 — Compétences
+          Techniques</span></div>
+      <h2 class="stitle rv">
+        <span class="lang-en">Tools &amp; <em>expertise</em></span>
+        <span class="lang-fr">Outils &amp; <em>expertise</em></span>
+      </h2>
+      <div class="skills-grid rv d1">
+        <div class="skcard">
+          <div class="skcard-n">01</div>
+          <div class="skcard-t"><span class="lang-en">CAD Software</span><span class="lang-fr">Logiciels CAO</span>
+          </div>
+          <div class="skitem"><span class="skname">CATIA V5</span>
+            <div class="skbar">
+              <div class="skfill" data-w="95"></div>
+            </div><span class="skpct">95%</span>
+          </div>
+          <div class="skitem"><span class="skname">Siemens NX</span>
+            <div class="skbar">
+              <div class="skfill" data-w="90"></div>
+            </div><span class="skpct">90%</span>
+          </div>
+          <div class="skitem"><span class="skname">SolidWorks</span>
+            <div class="skbar">
+              <div class="skfill" data-w="85"></div>
+            </div><span class="skpct">85%</span>
+          </div>
+          <div class="skitem"><span class="skname">Abaqus</span>
+            <div class="skbar">
+              <div class="skfill" data-w="80"></div>
+            </div><span class="skpct">80%</span>
+          </div>
+          <div class="skitem"><span class="skname">E3 Zuken</span>
+            <div class="skbar">
+              <div class="skfill" data-w="92"></div>
+            </div><span class="skpct">92%</span>
+          </div>
+        </div>
+        <div class="skcard">
+          <div class="skcard-n">02</div>
+          <div class="skcard-t"><span class="lang-en">Electrical Systems</span><span class="lang-fr">Systèmes
+              Électriques</span></div>
+          <div class="skitem"><span class="skname"><span class="lang-en">Power Distribution Systems</span><span
+                class="lang-fr">Systèmes de distribution d'énergie</span></span>
+            <div class="skbar">
+              <div class="skfill" data-w="95"></div>
+            </div><span class="skpct">95%</span>
+          </div>
+          <div class="skitem"><span class="skname"><span class="lang-en">Battery Management Systems (BMS)</span><span
+                class="lang-fr">Systèmes de gestion de batteries (BMS)</span></span>
+            <div class="skbar">
+              <div class="skfill" data-w="92"></div>
+            </div><span class="skpct">92%</span>
+          </div>
+          <div class="skitem"><span class="skname"><span class="lang-en">Automotive Embedded Systems</span><span
+                class="lang-fr">Systèmes embarqués automobiles</span></span>
+            <div class="skbar">
+              <div class="skfill" data-w="90"></div>
+            </div><span class="skpct">90%</span>
+          </div>
+        </div>
+        <div class="skcard">
+          <div class="skcard-n">03</div>
+          <div class="skcard-t">PLM &amp; Data</div>
+          <div class="skitem"><span class="skname">SmarTeam</span>
+            <div class="skbar">
+              <div class="skfill" data-w="90"></div>
+            </div><span class="skpct">90%</span>
+          </div>
+          <div class="skitem"><span class="skname">Teamcenter</span>
+            <div class="skbar">
+              <div class="skfill" data-w="85"></div>
+            </div><span class="skpct">85%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ═══ EXPERIENCE ═══ -->
+    <section id="experience" class="section">
+      <div class="ch"><span class="lang-en">04 — Experience</span><span class="lang-fr">04 — Expérience</span></div>
+      <h2 class="stitle rv">
+        <span class="lang-en">Professional <em>journey</em></span>
+        <span class="lang-fr">Parcours <em>professionnel</em></span>
+      </h2>
+      <div class="timeline">
+
+        <div class="exp-entry rv">
+          <div class="exp-meta">
+            <div class="exp-date">2025 — Present</div>
+            <div class="exp-loc"><span class="lang-en">Germany / Remote</span><span class="lang-fr">Allemagne /
+                Distanciel</span></div>
+          </div>
+          <div>
+            <div class="exp-co">Leoni · Mercedes-Benz</div>
+            <div class="exp-role"><span class="lang-en">Electrical Design Engineer</span><span class="lang-fr">Ingénieur
+                Conception Électrique</span></div>
+            <ul class="exp-items">
+              <li class="exp-item"><span class="lang-en">Designed high and low-voltage electrical harnesses for EQ and
+                  G-Class vehicles, achieving a 15% reduction in manufacturing time through cable path
+                  optimization.</span><span class="lang-fr">Conception de harnais électriques haute et basse tension
+                  pour les véhicules EQ et G-Classe, réduction de 15 % du temps de fabrication par optimisation des
+                  chemins de câbles.</span></li>
+              <li class="exp-item"><span class="lang-en">Utilized Siemens NX for advanced 3D modeling and layout
+                  design.</span><span class="lang-fr">Utilisation de Siemens NX pour la modélisation et la
+                  conception.</span></li>
+              <li class="exp-item"><span class="lang-en">Monitored harness manufacturing with teams in Romania and
+                  Germany, ensuring specification compliance and management via Engineering Client (PLM).</span><span
+                  class="lang-fr">Suivi de la fabrication des harnais avec les équipes en Roumanie et Allemagne, respect
+                  des spécifications et gestion via Engineering Client (PLM).</span></li>
+              <li class="exp-item"><span class="lang-en">Created documentation for technical modifications and managed
+                  product data within PLM tools.</span><span class="lang-fr">Documentation des modifications et gestion
+                  des données produits dans l'outil PLM.</span></li>
+            </ul>
+            <div class="exp-tags"><span class="tag">Siemens NX</span><span class="tag">E3 Zuken</span><span
+                class="tag">Teamcenter</span></div>
+          </div>
+        </div>
+
+        <div class="exp-entry rv d1">
+          <div class="exp-meta">
+            <div class="exp-date">2022 — 2024</div>
+            <div class="exp-loc">Tunis, Tunisia</div>
+          </div>
+          <div>
+            <div class="exp-co">Safran SEATS</div>
+            <div class="exp-role"><span class="lang-en">Electrical Design Engineer</span><span
+                class="lang-fr">Concepteur électrique</span></div>
+            <ul class="exp-items">
+              <li class="exp-item"><span class="lang-en">3D design of electrical harnesses for economy and business
+                  class seats while respecting technical and environmental constraints.</span><span
+                  class="lang-fr">Conception de harnais électriques pour sièges d'avion (classe économique et business),
+                  respect des contraintes techniques et environnementales.</span></li>
+              <li class="exp-item"><span class="lang-en">Modeled sheet metal and thermoformed parts for integrating
+                  electrical equipment: IFE (In-Flight Entertainment), ECU (Electronic Control Unit), PCU (Passenger
+                  Control Unit).</span><span class="lang-fr">Modélisation 3D sous CATIA V5 (EHI/EHA) pour l'intégration
+                  des équipements électriques (IFE, ECU, PCU).</span></li>
+              <li class="exp-item"><span class="lang-en">Developed 2D plans for manufacturing and created technical
+                  documentation (3D PDFs, BOMs, UEBL, etc.).</span><span class="lang-fr">Création de nomenclatures,
+                  plans 2D et documentation technique (PDFs 3D, BOMs, UEBL, etc.).</span></li>
+            </ul>
+            <div class="exp-tags"><span class="tag">CATIA V5 (EHI/EHA)</span><span class="tag">SmarTeam</span><span
+                class="tag">ISO Standards</span></div>
+          </div>
+        </div>
+
+        <div class="exp-entry rv d2">
+          <div class="exp-meta">
+            <div class="exp-date">2022</div>
+            <div class="exp-loc">Sousse, Tunisia</div>
+          </div>
+          <div>
+            <div class="exp-co"><span class="lang-en">Microelectronics and Nanotechnology Research Center</span><span
+                class="lang-fr">Centre de recherche en microélectronique et nanotechnologie</span></div>
+            <div class="exp-role"><span class="lang-en">Final-Year Internship</span><span class="lang-fr">Stagiaire de
+                fin d'études</span></div>
+            <ul class="exp-items">
+              <li class="exp-item"><span class="lang-en">Development of CanSat prototype systems, focusing on
+                  hardware-software handshake and sensory data processing pipelines.</span><span
+                  class="lang-fr">Développement de systèmes prototypes CanSat — handshake matériel-logiciel et
+                  traitement des données sensorielles.</span></li>
+            </ul>
+            <div class="exp-tags"><span class="tag">Embedded Systems</span><span class="tag">R&amp;D</span><span
+                class="tag">Sensor Data</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ═══ PROJECTS — SCROLL-DRIVEN ═══ -->
+    <div id="projects-section">
+      <div class="section" style="padding-bottom:48px;">
+        <div class="ch"><span class="lang-en">05 — Selected Works</span><span class="lang-fr">05 — Projets
+            Sélectionnés</span></div>
+        <h2 class="stitle rv" style="margin-bottom:0;">
+          <span class="lang-en">Design <em>portfolio</em></span>
+          <span class="lang-fr">Portfolio de <em>conception</em></span>
+        </h2>
+      </div>
+
+      <div id="proj-scroll">
+        <div id="proj-sticky">
+          <div id="proj-track">
+
+            <!-- ══ Slide 01 — EV Powertrain (5 images, individual blur + view) ══ -->
+            <div class="pslide">
+              <div class="pslide-media">
+                <div class="igrid s1">
+                  <div class="img-wrap"
+                    data-gallery="assets/tassouedits/EV Powertrain/1.png,assets/tassouedits/EV Powertrain/2.png,assets/tassouedits/EV Powertrain/3.png,assets/tassouedits/EV Powertrain/4.png,assets/tassouedits/EV Powertrain/5.png">
+                    <img src="assets/tassouedits/EV Powertrain/1.png" alt="EV Powertrain Gallery" class="reveal-blur">
+                    <div class="img-view-overlay">
+                      <button class="img-view-pill"><i class="fas fa-images"></i><span class="lang-en">View Project
+                          Gallery</span><span class="lang-fr">Voir la Galerie</span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pslide-info" data-n="01">
+                <div class="pslide-num"><span class="lang-en">Project</span><span class="lang-fr">Projet</span> 01 / 05
+                </div>
+                <div class="pslide-title"><span class="lang-en">EV Powertrain</span><span class="lang-fr">EV
+                    Powertrain</span></div>
+                <p class="pslide-desc"><span class="lang-en">Designed HV harness routing for motors, inverter, and
+                    junction box, considering packaging, safety, thermal, and serviceability constraints.</span><span
+                    class="lang-fr">Conception du Câblage HV pour Moteures, Inverseur et Boîte de Jonction, en Tenant
+                    Compte des Contraintes de Packaging, Sécurité, Thermiques et Serviceability.</span></p>
+                <div class="pslide-tags"><span class="ptag">SIEMENS NX</span></div>
+              </div>
+            </div>
+
+            <!-- ══ Slide 02 — EV Battery Integration (3 images, individual blur + view) ══ -->
+            <div class="pslide">
+              <div class="pslide-media">
+                <div class="igrid s1">
+                  <div class="img-wrap"
+                    data-gallery="assets/tassouedits/EV Battery Integration/111-2.jpg,assets/tassouedits/EV Battery Integration/222-2.jpg,assets/tassouedits/EV Battery Integration/333-4.jpg">
+                    <img src="assets/tassouedits/EV Battery Integration/111-2.jpg" alt="EV Battery Integration Gallery"
+                      class="reveal-blur">
+                    <div class="img-view-overlay">
+                      <button class="img-view-pill"><i class="fas fa-images"></i><span class="lang-en">View Project
+                          Gallery</span><span class="lang-fr">Voir la Galerie</span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pslide-info" data-n="02">
+                <div class="pslide-num"><span class="lang-en">Project</span><span class="lang-fr">Projet</span> 02 / 05
+                </div>
+                <div class="pslide-title"><span class="lang-en">EV Battery Integration</span><span class="lang-fr">EV
+                    Battery Integration</span></div>
+                <p class="pslide-desc"><span class="lang-en">Developed battery-side connectors, HV harnesses, and
+                    protective sleeves based on industry standards.</span><span class="lang-fr">Développement de
+                    Connecteurs Côté Batterie, Faisceaux HV et Manchons de Protection selon les Normes
+                    Industrielles.</span></p>
+                <div class="pslide-tags"><span class="ptag">SIEMENS NX</span></div>
+              </div>
+            </div>
+
+            <!-- Slide 03 — Otto Robot (video) — UNCHANGED -->
+            <div class="pslide">
+              <div class="pslide-media">
+                <div class="igrid s1">
+                  <video muted loop playsinline autoplay>
+                    <source src="assets/Video2.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="rec"></div>
+              </div>
+              <div class="pslide-info" data-n="03">
+                <div class="pslide-num"><span class="lang-en">Project</span><span class="lang-fr">Projet</span> 03 / 05
+                </div>
+                <div class="pslide-title"><span class="lang-en">Otto DIY Humanoid Robot</span><span class="lang-fr">Otto
+                    DIY Humanoid Robot</span></div>
+                <p class="pslide-desc"><span class="lang-en">Design, modeling, and development of a robot capable of
+                    interpreting human actions and performing facial recognition.</span><span
+                    class="lang-fr">Conception, modélisation et développement d'un robot capable d'interpréter les
+                    actions humaines et d'effectuer la reconnaissance faciale.</span></p>
+                <div class="pslide-tags"><span class="ptag">SolidWorks</span><span class="ptag">Abaqus</span><span
+                    class="ptag">C++</span><span class="ptag">Kicad</span></div>
+              </div>
+            </div>
+
+            <!-- Slide 04 — CanSat — UNCHANGED -->
+            <div class="pslide">
+              <div class="pslide-media">
+                <div class="cansat-pair">
+                  <img src="assets/tassouedits/pic.png" alt="CanSat Prototype">
+                  <video muted loop playsinline autoplay>
+                    <source src="assets/Video1.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="rec"></div>
+              </div>
+              <div class="pslide-info" data-n="04">
+                <div class="pslide-num"><span class="lang-en">Project</span><span class="lang-fr">Projet</span> 04 / 05
+                </div>
+                <div class="pslide-title"><span class="lang-en">Design and Implementation of a CanSat
+                    Prototype</span><span class="lang-fr">Conception et Mise en Œuvre d'un Prototype CanSat</span></div>
+                <p class="pslide-desc"><span class="lang-en">Analyzed technical constraints for designing a CanSat
+                    prototype, assembled the electronic system, programmed in C++ and Python, and performed launch data
+                    analysis.</span><span class="lang-fr">Analyse des contraintes techniques pour la conception d'un
+                    prototype CanSat, assemblage du système électronique, programmation en C++ et Python, et analyse des
+                    données de lancement.</span></p>
+                <div class="pslide-tags"><span class="ptag">SolidWorks</span><span class="ptag">Abaqus</span><span
+                    class="ptag">C++</span><span class="ptag">Python</span><span class="ptag">Kicad</span></div>
+              </div>
+            </div>
+
+            <!-- Slide 05 — Industrial Vision — UNCHANGED -->
+            <div class="pslide">
+              <div class="pslide-media">
+                <div class="igrid s1">
+                  <video muted loop playsinline autoplay>
+                    <source src="assets/Video3.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="rec"></div>
+              </div>
+              <div class="pslide-info" data-n="05">
+                <div class="pslide-num"><span class="lang-en">Project</span><span class="lang-fr">Projet</span> 05 / 05
+                </div>
+                <div class="pslide-title"><span class="lang-en">Industrial Vision Project</span><span
+                    class="lang-fr">Vision industrielle</span></div>
+                <p class="pslide-desc"><span class="lang-en">Classification of mechanical parts and verification of
+                    constraints based on name, shape, color, and barcode.</span><span class="lang-fr">Classification des
+                    pièces mécaniques et vérification de leurs contraintes selon le nom, la forme, la couleur ainsi que
+                    le code à barres.</span></p>
+                <div class="pslide-tags"><span class="ptag">Labview</span><span class="ptag">Catia V5</span></div>
+              </div>
+            </div>
+
+          </div><!-- /track -->
+
+          <div class="proj-ui">
+            <span class="proj-hint lang-en">Scroll to explore →</span>
+            <span class="proj-hint lang-fr">Défiler pour explorer →</span>
+            <div class="proj-pbar">
+              <div class="proj-pfill" id="projFill"></div>
+            </div>
+            <span class="proj-counter"><span id="projCur">1</span> / 5</span>
+          </div>
+
+        </div><!-- /sticky -->
+      </div><!-- /proj-scroll -->
+    </div><!-- /projects-section -->
+
+    <hr class="divider" style="margin-top:0;">
+
+    <!-- ═══ CERTIFICATIONS ═══ -->
+    <section id="certifications" class="section">
+      <div class="ch"><span class="lang-en">06 — Certifications &amp; Awards</span><span class="lang-fr">06 —
+          Certifications &amp; Prix</span></div>
+      <h2 class="stitle rv">
+        <span class="lang-en">Technical <em>Excellence</em></span>
+        <span class="lang-fr">Excellence <em>Technique</em></span>
+      </h2>
+      <div class="cert-grid rv d1">
+        <div class="cert-card">
+          <div class="cert-media cert-pdf">
+            <i class="fas fa-file-image"></i>
+            <a href="certfication/Certif2.png" target="_blank" class="cert-view"><span class="lang-en">View</span><span
+                class="lang-fr">Voir</span></a>
+          </div>
+          <div class="cert-info">
+            <div class="cert-title"><span class="lang-en">Professional Certification 01</span><span
+                class="lang-fr">Certification Professionnelle 01</span></div>
+            <div class="cert-iss"><span class="lang-en">Internal Verification · 2024</span><span
+                class="lang-fr">Vérification Interne · 2024</span></div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-media cert-pdf">
+            <i class="fas fa-file-pdf"></i>
+            <a href="certfication/Certif 1.PDF" target="_blank" class="cert-view"><span class="lang-en">View
+                PDF</span><span class="lang-fr">Voir PDF</span></a>
+          </div>
+          <div class="cert-info">
+            <div class="cert-title"><span class="lang-en">Industrial Safety Standards</span><span class="lang-fr">Normes
+                de Sécurité Industrielle</span></div>
+            <div class="cert-iss"><span class="lang-en">Qualified Engineer · 2023</span><span class="lang-fr">Ingénieur
+                Qualifié · 2023</span></div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-media cert-pdf">
+            <i class="fas fa-file-pdf"></i>
+            <a href="certfication/certif 3.pdf" target="_blank" class="cert-view"><span class="lang-en">View
+                PDF</span><span class="lang-fr">Voir PDF</span></a>
+          </div>
+          <div class="cert-info">
+            <div class="cert-title"><span class="lang-en">Advanced NX Modeling</span><span class="lang-fr">Modélisation
+                NX Avancée</span></div>
+            <div class="cert-iss"><span class="lang-en">Siemens Engineering · 2022</span><span
+                class="lang-fr">Ingénierie Siemens · 2022</span></div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-media cert-pdf">
+            <i class="fas fa-file-pdf"></i>
+            <a href="certfication/certif 4.pdf" target="_blank" class="cert-view"><span class="lang-en">View
+                PDF</span><span class="lang-fr">Voir PDF</span></a>
+          </div>
+          <div class="cert-info">
+            <div class="cert-title"><span class="lang-en">Quality Control Specialization</span><span
+                class="lang-fr">Spécialisation Contrôle Qualité</span></div>
+            <div class="cert-iss"><span class="lang-en">Industrial Institute · 2021</span><span class="lang-fr">Institut
+                Industriel · 2021</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ═══ EDUCATION ═══ -->
+    <section id="education" class="section">
+      <div class="ch"><span class="lang-en">07 — Education</span><span class="lang-fr">07 — Formation</span></div>
+      <h2 class="stitle rv">
+        <span class="lang-en">Academic <em>foundation</em></span>
+        <span class="lang-fr">Fondations <em>académiques</em></span>
+      </h2>
+      <div class="edu-grid rv d1">
+        <div class="edu-card">
+          <div class="edu-yr">2019 — 2022</div>
+          <div class="edu-deg"><span class="lang-en">Mechatronics Engineering</span><span class="lang-fr">Ingénieur en
+              mécatronique</span></div>
+          <div class="edu-sch"><span class="lang-en">National Engineering School of Sousse (ENISo)</span><span
+              class="lang-fr">Ecole Nationale d'Ingénieurs de Sousse (ENISo)</span></div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-yr">2017 — 2019</div>
+          <div class="edu-deg">PT</div>
+          <div class="edu-sch">
+            <span class="lang-en">IPEIN<br>Preparatory Institute for Engineering Studies of Nabeul<br>Nabeul,
+              Tunisia</span>
+            <span class="lang-fr">IPEIN<br>Institut Préparatoire aux Etudes d'Ingénieur à Nabeul</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <h2 class="footer-hl">
+          <span class="lang-en">Let's build<br>the <em>future</em></span>
+          <span class="lang-fr">Construisons<br>l'<em>avenir</em></span>
+        </h2>
+        <p class="footer-sub">
+          <span class="lang-en">Open to new collaborations in aerospace, automotive, and emerging mobility
+            sectors.</span>
+          <span class="lang-fr">Ouvert aux nouvelles collaborations en aérospatial, automobile et mobilité
+            émergente.</span>
+        </p>
+      </div>
+      <div class="flinks">
+        <a href="said_bouzidi@yahoo.com" class="flink">
+          <div class="flink-ico"><i class="fas fa-envelope"></i></div>
+          said_bouzidi@yahoo.com
+        </a>
+
+        <a href="https://www.linkedin.com/in/said-bouzidi-9b352616a/" target="_blank" class="flink">
+          <div class="flink-ico"><i class="fab fa-linkedin-in"></i></div>
+          Said bouzidi
+        </a>
+        <a href="tel:21654358762" class="flink">
+          <div class="flink-ico"><i class="fas fa-phone"></i></div>
+          +216 54 358 762
+        </a>
+      </div>
+      <div class="fcopy">
+        <span>© 2025 Said BOUZIDI — Electrical Design Engineer</span>
+        <span>Strategy · Design · Scale</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══ MODAL (Young & Fresh Design) ═══ -->
+  <div class="modal" id="modal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-card" id="modalCard">
+      <div class="modal-topbar">
+        <span class="modal-label lang-en">Project Gallery</span>
+        <span class="modal-label lang-fr">Galerie du Projet</span>
+        <div id="modalCounter"
+          style="color: var(--accent); font-family: var(--mono); font-size: 0.6rem; margin: 0 15px;">1 / 1</div>
+        <button class="modal-x" id="modalClose"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-img-wrap" id="modalImgWrap">
+        <!-- Image inserted here -->
+      </div>
+      <!-- Gallery Nav -->
+      <button class="modal-nav prev" id="modalPrev"><i class="fas fa-chevron-left"></i></button>
+      <button class="modal-nav next" id="modalNext"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+</body>
+
+</html>
