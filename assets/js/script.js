@@ -340,6 +340,7 @@
         sec.style.transformOrigin = 'top center';
       } else if (rect.top >= 0) {
         sec.style.filter = '';
+        sec.style.transform = '';
       }
     });
   }
@@ -391,6 +392,197 @@
         icon.classList.remove('fa-times');
         icon.classList.add('fa-bars');
       });
+    });
+  }
+
+  /* ━━ PARTICLES ━━ */
+  (() => {
+    const canvas = document.getElementById('particles-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, pts = [];
+
+    const resize = () => {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Vibrant color palette
+    const palette = [
+      [75, 126, 255],   // electric blue
+      [255, 112, 64],   // warm orange
+      [16, 185, 129],   // teal/emerald
+      [168, 85, 247],   // violet
+      [251, 191, 36],   // amber
+      [236, 72, 153],   // pink
+    ];
+
+    for (let i = 0; i < 80; i++) {
+      const col = palette[Math.floor(Math.random() * palette.length)];
+      pts.push({
+        x: Math.random() * 2000,
+        y: Math.random() * 1000,
+        vx: (Math.random() - .5) * .5,
+        vy: (Math.random() - .5) * .5,
+        r: Math.random() * 1.6 + .5,
+        col,                        // [r,g,b]
+        pulse: Math.random() * Math.PI * 2  // phase offset for pulsing
+      });
+    }
+
+    let tick = 0;
+    function drawParticles() {
+      tick++;
+      ctx.clearRect(0, 0, W, H);
+      pts.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+        // Subtle radius pulse
+        const pr = p.r + Math.sin(tick * 0.04 + p.pulse) * 0.4;
+        const [r, g, b] = p.col;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, pr, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r},${g},${b},0.65)`;
+        ctx.fill();
+        // Glow ring
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, pr + 2, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${r},${g},${b},0.15)`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      });
+      // Draw connections with color blend
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x;
+          const dy = pts[i].y - pts[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 130) {
+            const alpha = 0.18 * (1 - d / 130);
+            const [r1, g1, b1] = pts[i].col;
+            const [r2, g2, b2] = pts[j].col;
+            // Blend colors at midpoint
+            const mr = Math.round((r1 + r2) / 2);
+            const mg = Math.round((g1 + g2) / 2);
+            const mb = Math.round((b1 + b2) / 2);
+            ctx.beginPath();
+            ctx.moveTo(pts[i].x, pts[i].y);
+            ctx.lineTo(pts[j].x, pts[j].y);
+            ctx.strokeStyle = `rgba(${mr},${mg},${mb},${alpha})`;
+            ctx.lineWidth = 0.7;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+  })();
+
+  /* ━━ TYPEWRITER ━━ */
+  (() => {
+    const el = document.getElementById('typed-role');
+    if (!el) return;
+    const texts = [
+      'Electrical Design Engineer',
+      'CATIA V5 · Siemens NX Expert',
+      'EV Powertrain Specialist',
+      'Aerospace & Automotive',
+      'PLM · 3D Harness Routing'
+    ];
+    let ti = 0, ci = 0, deleting = false;
+
+    function type() {
+      const t = texts[ti];
+      const isFrench = document.documentElement.classList.contains('fr');
+      const frTexts = [
+        'Ingénieur Conception Électrique',
+        'Expert CATIA V5 · Siemens NX',
+        'Spécialiste en Groupes Motopropulseurs VE',
+        'Aéronautique & Automobile',
+        'Conception de Faisceaux 3D · PLM'
+      ];
+      const currentText = isFrench ? frTexts[ti] : t;
+
+      el.textContent = deleting ? currentText.slice(0, --ci) : currentText.slice(0, ++ci);
+      if (!deleting && ci === currentText.length) {
+        deleting = true;
+        setTimeout(type, 2200);
+        return;
+      }
+      if (deleting && ci === 0) {
+        deleting = false;
+        ti = (ti + 1) % texts.length;
+      }
+      setTimeout(type, deleting ? 34 : 68);
+    }
+    setTimeout(type, 800);
+  })();
+
+  /* ━━ STATS COUNTER ━━ */
+  (() => {
+    const bar = document.getElementById('stats-bar');
+    if (!bar) return;
+    let fired = false;
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !fired) {
+        fired = true;
+        document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+          const target = +el.dataset.target;
+          const dur = 1600, step = 16;
+          let cur = 0;
+          const inc = target / (dur / step);
+          const t = setInterval(() => {
+            cur = Math.min(cur + inc, target);
+            el.textContent = Math.round(cur);
+            if (cur >= target) clearInterval(t);
+          }, step);
+        });
+      }
+    }, { threshold: 0.5 });
+    obs.observe(bar);
+  })();
+
+
+  /* ━━ CONTACT FORM (EmailJS) ━━ */
+  const contactForm = document.getElementById('contact-form');
+  const contactMsg = document.getElementById('cf-msg');
+  const contactBtn = document.getElementById('cf-btn');
+  const contactBtnText = document.getElementById('cf-btn-text');
+
+  // Replace with your EmailJS Public Key
+  if (window.emailjs) {
+    emailjs.init("Gr6HKmOLlYUFzNUb5");
+  }
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      contactBtn.disabled = true;
+      const originalBtnHtml = contactBtnText.innerHTML;
+      contactBtnText.textContent = lang === 'fr' ? 'Envoi...' : 'Sending...';
+
+      // Replace "YOUR_SERVICE_ID" and "YOUR_TEMPLATE_ID" with your EmailJS identifiers
+      emailjs.sendForm('service_gzav76g', 'template_qdfvj4l', contactForm)
+        .then(() => {
+          contactMsg.textContent = lang === 'fr' ? '✓ Message envoyé avec succès !' : '✓ Message sent successfully!';
+          contactMsg.className = 'form-msg success';
+          contactForm.reset();
+        })
+        .catch((err) => {
+          console.error('EmailJS Error:', err);
+          contactMsg.textContent = lang === 'fr' ? '✕ Erreur lors de l\'envoi. Réessayez.' : '✕ Error sending. Please try again.';
+          contactMsg.className = 'form-msg error';
+        })
+        .finally(() => {
+          contactBtn.disabled = false;
+          contactBtnText.innerHTML = originalBtnHtml;
+          setTimeout(() => { if (contactMsg) contactMsg.className = 'form-msg'; }, 5000);
+        });
     });
   }
 

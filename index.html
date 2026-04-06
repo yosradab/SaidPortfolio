@@ -5,8 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Said BOUZIDI — Electrical Design Engineer | Portfolio</title>
-  <meta name="description" content="Portfolio of Said BOUZIDI: Electrical Design Engineer specializing in 3D harness routing, embedded systems, and low/high-voltage electrical architecture for aerospace and automotive.">
-  <meta name="keywords" content="Said Bouzidi, Electrical Design Engineer, Ingénieur Conception Électrique, Siemens NX, CATIA V5, E3 Zuken, Harness Design, Automotive, Aerospace, EV Powertrain">
+  <meta name="description"
+    content="Portfolio of Said BOUZIDI: Electrical Design Engineer specializing in 3D harness routing, embedded systems, and low/high-voltage electrical architecture for aerospace and automotive.">
+  <meta name="keywords"
+    content="Said Bouzidi, Electrical Design Engineer, Ingénieur Conception Électrique, Siemens NX, CATIA V5, E3 Zuken, Harness Design, Automotive, Aerospace, EV Powertrain">
   <meta name="author" content="Said BOUZIDI">
   <link rel="canonical" href="https://said-portfolio-six.vercel.app/">
 
@@ -14,7 +16,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://said-portfolio-six.vercel.app/">
   <meta property="og:title" content="Said BOUZIDI — Electrical Design Engineer">
-  <meta property="og:description" content="Discover the portfolio of Said BOUZIDI. Specializing in high-voltage electrical architecture and embedded systems.">
+  <meta property="og:description"
+    content="Discover the portfolio of Said BOUZIDI. Specializing in high-voltage electrical architecture and embedded systems.">
   <meta property="og:image" content="https://said-portfolio-six.vercel.app/assets/photoProfile.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,6 +44,7 @@
       <a href="#experience"><span class="lang-en">Journey</span><span class="lang-fr">Parcours</span></a>
       <a href="#projects-section"><span class="lang-en">Works</span><span class="lang-fr">Projets</span></a>
       <a href="#education"><span class="lang-en">Education</span><span class="lang-fr">Formation</span></a>
+      <a href="#contact"><span class="lang-en">Contact</span><span class="lang-fr">Contact</span></a>
     </nav>
     <div class="hctrl">
       <span class="lang-en"><a href="CV/Said_Bouzidi-ANG.pdf" class="ctrl" title="Download CV" download
@@ -60,22 +64,27 @@
     <a href="#projects-section" class="m-link"><span class="lang-en">Works</span><span
         class="lang-fr">Projets</span></a>
     <a href="#education" class="m-link"><span class="lang-en">Education</span><span class="lang-fr">Formation</span></a>
+    <a href="#contact" class="m-link"><span class="lang-en">Contact</span><span class="lang-fr">Contact</span></a>
   </div>
 
   <main>
 
     <!-- ═══ HERO ═══ -->
     <section id="hero">
+      <canvas id="particles-canvas"></canvas>
       <div class="hero-inner">
         <div class="hero-left">
           <div class="hero-tag">
-            <span class="lang-en">01 — Electrical harness design engineer</span>
-            <span class="lang-fr">01 — Ingénieur concepteur de harnais électrique</span>
+            <div class="hero-tag-badge lang-en"><i class="fas fa-bolt"></i> Electrical Harness Design Engineer</div>
+            <div class="hero-tag-badge lang-fr"><i class="fas fa-bolt"></i> Ingénieur Conception Électrique</div>
           </div>
           <h1 class="hero-title">
             SAID<br>
-            <span class="accent-line">BOUZIDI</span>
+            <span class="accent-line glitch" data-text="BOUZIDI">BOUZIDI</span>
           </h1>
+          <div class="hero-role rv">
+            <span id="typed-role"></span><span class="typed-cursor">█</span>
+          </div>
           <p class="hero-desc">
             <span class="lang-en">Specializing in 3D harness design, embedded systems integration, and low- and
               high-voltage electrical architecture for aerospace and automotive industries.</span>
@@ -87,9 +96,10 @@
             <a href="#projects-section" class="btn btn-primary">
               <span class="lang-en">View Work</span><span class="lang-fr">Voir Projets</span>
             </a>
-            <a href="#experience" class="btn btn-outline">
-              <span class="lang-en">My Journey</span><span class="lang-fr">Mon Parcours</span>
+            <a href="#contact" class="btn btn-outline">
+              <span class="lang-en">Get in Touch</span><span class="lang-fr">Me Contacter</span>
             </a>
+            
             <span class="lang-en">
               <a href="CV/Said_Bouzidi-ANG.pdf" class="btn btn-ghost" download target="_blank">
                 <i class="fas fa-file-download"></i>
@@ -102,13 +112,18 @@
                 Télécharger CV
               </a>
             </span>
+
+            <div class="hero-scroll rv d4">
+              <span class="lang-en">Scroll to explore ↓</span>
+              <span class="lang-fr">Défiler pour explorer ↓</span>
+            </div>
           </div>
         </div>
 
         <div class="hero-right">
           <div class="photo-wrap">
             <div class="photo-frame">
-              <img src="assets/photoProfile.png" alt="Said BOUZIDI">
+              <img src="assets/photoProfile-transparent.png" alt="Said BOUZIDI">
             </div>
           </div>
           <div class="badge-avail">
@@ -129,10 +144,7 @@
         </div>
       </div>
 
-      <div class="hero-scroll rv d4">
-        <span class="lang-en">Scroll to explore ↓</span>
-        <span class="lang-fr">Défiler pour explorer ↓</span>
-      </div>
+
     </section>
 
     <hr class="divider">
@@ -174,7 +186,8 @@
             <div>
               <div class="spec-label"><span class="lang-en">Automotive Design</span><span class="lang-fr">Design
                   Automobile</span></div>
-              <div class="spec-sub"><span class="lang-en">High and low-voltage harness architecture</span><span class="lang-fr">Architecture de faisceaux haute et basse tension</span></div>
+              <div class="spec-sub"><span class="lang-en">High and low-voltage harness architecture</span><span
+                  class="lang-fr">Architecture de faisceaux haute et basse tension</span></div>
             </div>
           </div>
           <div class="spec-item">
@@ -292,7 +305,8 @@
 
         <div class="exp-entry rv">
           <div class="exp-meta">
-            <div class="exp-date"><span class="lang-en">2025 — Present</span><span class="lang-fr">2025 — Présent</span></div>
+            <div class="exp-date"><span class="lang-en">2025 — Present</span><span class="lang-fr">2025 — Présent</span>
+            </div>
             <div class="exp-loc"><span class="lang-en">Germany / Remote</span><span class="lang-fr">Allemagne /
                 Distanciel</span></div>
           </div>
@@ -325,7 +339,8 @@
         <div class="exp-entry rv d1">
           <div class="exp-meta">
             <div class="exp-date">2022 — 2024</div>
-            <div class="exp-loc"><span class="lang-en">Tunis, Tunisia</span><span class="lang-fr">Tunis, Tunisie</span></div>
+            <div class="exp-loc"><span class="lang-en">Tunis, Tunisia</span><span class="lang-fr">Tunis, Tunisie</span>
+            </div>
           </div>
           <div>
             <div class="exp-co">Safran SEATS</div>
@@ -352,7 +367,8 @@
         <div class="exp-entry rv d2">
           <div class="exp-meta">
             <div class="exp-date">2022</div>
-            <div class="exp-loc"><span class="lang-en">Sousse, Tunisia</span><span class="lang-fr">Sousse, Tunisie</span></div>
+            <div class="exp-loc"><span class="lang-en">Sousse, Tunisia</span><span class="lang-fr">Sousse,
+                Tunisie</span></div>
           </div>
           <div>
             <div class="exp-co"><span class="lang-en">Microelectronics and Nanotechnology Research Center</span><span
@@ -365,7 +381,10 @@
                   class="lang-fr">Développement de systèmes prototypes CanSat — handshake matériel-logiciel et
                   traitement des données sensorielles.</span></li>
             </ul>
-            <div class="exp-tags"><span class="tag"><span class="lang-en">Embedded Systems</span><span class="lang-fr">Systèmes Embarqués</span></span><span class="tag">R&amp;D</span><span class="tag"><span class="lang-en">Sensor Data</span><span class="lang-fr">Données Sensorielles</span></span></div>
+            <div class="exp-tags"><span class="tag"><span class="lang-en">Embedded Systems</span><span
+                  class="lang-fr">Systèmes Embarqués</span></span><span class="tag">R&amp;D</span><span
+                class="tag"><span class="lang-en">Sensor Data</span><span class="lang-fr">Données
+                  Sensorielles</span></span></div>
           </div>
         </div>
 
@@ -550,7 +569,8 @@
                 class="lang-fr">Voir</span></a>
           </div>
           <div class="cert-info">
-            <div class="cert-title"><span class="lang-en">Catia V5 - Electric Vehicle High Voltage Harness Design</span><span class="lang-fr">Catia V5 - Faisceaux Haute Tension Véhicules Électriques</span></div>
+            <div class="cert-title"><span class="lang-en">Catia V5 - Electric Vehicle High Voltage Harness
+                Design</span><span class="lang-fr">Catia V5 - Faisceaux Haute Tension Véhicules Électriques</span></div>
             <div class="cert-iss"><span class="lang-en">Internal Verification · 2024</span><span
                 class="lang-fr">Vérification Interne · 2024</span></div>
           </div>
@@ -562,7 +582,9 @@
                 PDF</span><span class="lang-fr">Voir PDF</span></a>
           </div>
           <div class="cert-info">
-            <div class="cert-title"><span class="lang-en">Catia V5 Electrical Harness Design - Automotive &amp; Industrial</span><span class="lang-fr">Catia V5 Conception de Faisceaux Électriques - Auto &amp; Industriel</span></div>
+            <div class="cert-title"><span class="lang-en">Catia V5 Electrical Harness Design - Automotive &amp;
+                Industrial</span><span class="lang-fr">Catia V5 Conception de Faisceaux Électriques - Auto &amp;
+                Industriel</span></div>
             <div class="cert-iss"><span class="lang-en">Qualified Engineer · 2023</span><span class="lang-fr">Ingénieur
                 Qualifié · 2023</span></div>
           </div>
@@ -574,7 +596,8 @@
                 PDF</span><span class="lang-fr">Voir PDF</span></a>
           </div>
           <div class="cert-info">
-            <div class="cert-title"><span class="lang-en">Basic NX Design Training</span><span class="lang-fr">Formation de Base en Conception NX</span></div>
+            <div class="cert-title"><span class="lang-en">Basic NX Design Training</span><span class="lang-fr">Formation
+                de Base en Conception NX</span></div>
             <div class="cert-iss"><span class="lang-en">Siemens Engineering · 2022</span><span
                 class="lang-fr">Ingénierie Siemens · 2022</span></div>
           </div>
@@ -586,7 +609,8 @@
                 PDF</span><span class="lang-fr">Voir PDF</span></a>
           </div>
           <div class="cert-info">
-            <div class="cert-title"><span class="lang-en">NX Electrical Routing Training</span><span class="lang-fr">Formation NX Routage Électrique</span></div>
+            <div class="cert-title"><span class="lang-en">NX Electrical Routing Training</span><span
+                class="lang-fr">Formation NX Routage Électrique</span></div>
             <div class="cert-iss"><span class="lang-en">Industrial Institute · 2021</span><span class="lang-fr">Institut
                 Industriel · 2021</span></div>
           </div>
@@ -626,38 +650,109 @@
 
   </main>
 
+  <!-- ═══ CONTACT ═══ -->
+  <section id="contact" class="section">
+    <div class="ch"><span class="lang-en">08 — Get in Touch</span><span class="lang-fr">08 — Me Contacter</span></div>
+    <h2 class="stitle rv">
+      <span class="lang-en">Let's <em>connect</em></span>
+      <span class="lang-fr">Travaillons <em>ensemble</em></span>
+    </h2>
+    <div class="contact-layout">
+
+      <!-- Left: info -->
+      <div class="contact-info rv d1">
+        <p class="contact-tagline">
+          <span class="lang-en">Open to new roles in aerospace, automotive, and emerging mobility. Let's build something
+            exceptional together.</span>
+          <span class="lang-fr">Ouvert aux nouvelles opportunités en aérospatial, automobile et mobilité émergente.
+            Construisons quelque chose d'exceptionnel ensemble.</span>
+        </p>
+        <div class="contact-links">
+          <a href="mailto:said_bouzidi@yahoo.com" class="c-link" id="clink-email">
+            <div class="c-link-ico"><i class="fas fa-envelope"></i></div>
+            <span>said_bouzidi@yahoo.com</span>
+          </a>
+          <a href="tel:+21654358762" class="c-link" id="clink-phone">
+            <div class="c-link-ico"><i class="fas fa-phone"></i></div>
+            <span>+216 54 358 762</span>
+          </a>
+          <a href="https://www.linkedin.com/in/said-bouzidi-9b352616a/" target="_blank" class="c-link"
+            id="clink-linkedin">
+            <div class="c-link-ico"><i class="fab fa-linkedin-in"></i></div>
+            <span>linkedin.com/in/said-bouzidi</span>
+          </a>
+        </div>
+        <div class="contact-avail">
+          <div class="badge-dot"></div>
+          <span class="lang-en">Available · Germany / Remote · 2 weeks notice</span>
+          <span class="lang-fr">Disponible · Allemagne / Distanciel · Préavis 2 semaines</span>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="contact-form-wrap rv d2">
+        <div class="form-header">
+          <span class="lang-en">Send a Message</span>
+          <span class="lang-fr">Envoyer un Message</span>
+        </div>
+        <form id="contact-form" class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cf-name">
+                <span class="lang-en">Name</span><span class="lang-fr">Nom</span>
+              </label>
+              <input type="text" name="name" id="cf-name" class="form-input" placeholder="Said BOUZIDI" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-email">
+                <span class="lang-en">Email</span><span class="lang-fr">E-mail</span>
+              </label>
+              <input type="email" name="email" id="cf-email" class="form-input" placeholder="you@company.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-subject">
+              <span class="lang-en">Subject</span><span class="lang-fr">Sujet</span>
+            </label>
+            <input type="text" name="subject" id="cf-subject" class="form-input" placeholder="Job opportunity, collaboration..."
+              required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-message">
+              <span class="lang-en">Message</span><span class="lang-fr">Message</span>
+            </label>
+            <textarea name="message" id="cf-message" class="form-textarea" rows="5" placeholder="Tell me about the project or role..."
+              required></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="cf-btn">
+            <span id="cf-btn-text"><span class="lang-en">Send Message</span><span class="lang-fr">Envoyer</span></span>
+            <i class="fas fa-paper-plane" id="cf-btn-icon"></i>
+          </button>
+          <div id="cf-msg" class="form-msg"></div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ═══ FOOTER ═══ -->
   <footer>
     <div class="footer-inner">
-      <div>
+      <div style="grid-column: 1 / -1; text-align: center;">
         <h2 class="footer-hl">
           <span class="lang-en">Let's build<br>the <em>future</em></span>
           <span class="lang-fr">Construisons<br>l'<em>avenir</em></span>
         </h2>
-        <p class="footer-sub">
+        <p class="footer-sub" style="margin: 0 auto;">
           <span class="lang-en">Open to new collaborations in aerospace, automotive, and emerging mobility
             sectors.</span>
           <span class="lang-fr">Ouvert aux nouvelles collaborations en aérospatial, automobile et mobilité
             émergente.</span>
         </p>
       </div>
-      <div class="flinks">
-        <a href="said_bouzidi@yahoo.com" class="flink">
-          <div class="flink-ico"><i class="fas fa-envelope"></i></div>
-          said_bouzidi@yahoo.com
-        </a>
-
-        <a href="https://www.linkedin.com/in/said-bouzidi-9b352616a/" target="_blank" class="flink">
-          <div class="flink-ico"><i class="fab fa-linkedin-in"></i></div>
-          Said bouzidi
-        </a>
-        <a href="tel:21654358762" class="flink">
-          <div class="flink-ico"><i class="fas fa-phone"></i></div>
-          +216 54 358 762
-        </a>
-      </div>
+      
       <div class="fcopy">
-        <span>© 2025 Said BOUZIDI — Electrical Design Engineer</span>
+        <span>© 2026 Said BOUZIDI — Electrical Design Engineer</span>
         <span>Strategy · Design · Scale</span>
       </div>
     </div>
@@ -683,6 +778,7 @@
     </div>
   </div>
 
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script src="assets/js/script.js"></script>
 </body>
 
