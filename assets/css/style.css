@@ -133,7 +133,7 @@ header {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 100px;
+  border-radius: 0;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: background .5s, border .5s;
 }
@@ -189,7 +189,7 @@ nav a:hover {
   cursor: pointer;
   width: 34px;
   height: 34px;
-  border-radius: 50%;
+  border-radius: 0;
   font-size: .7rem;
   display: flex;
   align-items: center;
@@ -235,7 +235,7 @@ html.fr .hero-tag-badge.lang-fr {
 
 /* ━━ LAYOUT ━━ */
 main {
-  /* Removed padding-top to allow hero to sit under navbar naturally */
+  position: relative;
 }
 
 /* ━━ CARD FLOW — each section is a card that reveals on scroll ━━ */
@@ -268,8 +268,8 @@ footer {
 
 /* Subsequent sections keep the card look */
 main>section:not(#hero) {
-  border-top-left-radius: 32px;
-  border-top-right-radius: 32px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   border-top: 1px solid var(--border);
   scroll-margin-top: 112px;
 }
@@ -390,7 +390,8 @@ html:not(.dark) main>section:first-child {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 100px 48px 80px; /* Increased from 60px to 100px */
+  padding: 140px 48px 100px;
+  /* Increased from 60px to 100px */
   position: relative;
   overflow: hidden;
 }
@@ -405,12 +406,14 @@ html:not(.dark) main>section:first-child {
 }
 
 .hero-inner {
-  max-width: 1200px; /* Reduced from 1400px to add more side space */
+  max-width: 1200px;
+  /* Reduced from 1400px to add more side space */
   margin: 0 auto;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 400px;
-  gap: 60px; /* Balanced gap */
+  gap: 60px;
+  /* Balanced gap */
   align-items: center;
   position: relative;
 }
@@ -479,7 +482,8 @@ html:not(.dark) main>section:first-child {
   color: var(--text2);
   opacity: .5;
   white-space: nowrap;
-  margin-left: 24px; /* Added spacing from buttons as per screenshot */
+  margin-left: 24px;
+  /* Added spacing from buttons as per screenshot */
 }
 
 .btn {
@@ -559,26 +563,30 @@ html:not(.dark) main>section:first-child {
 .photo-frame {
   position: relative;
   overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, rgba(30, 45, 80, 0.4) 0%, var(--bg) 100%),
+    url('../profile-bg.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 0;
+  border: 1px solid var(--border2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 0 100px rgba(75, 126, 255, 0.1);
+  transition: all .5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .photo-frame::before {
-  /* content: ''; */
+  content: '';
   position: absolute;
-  top: 14px;
-  left: 14px;
-  right: -14px;
-  bottom: -14px;
-  border: 1px solid var(--accent);
-  opacity: .3;
-  z-index: 0;
-  transition: all .5s;
+  inset: -1px;
+  border-radius: 0;
+  background: linear-gradient(135deg, var(--accent) 0%, transparent 40%, transparent 60%, var(--accent) 100%);
+  opacity: 0.15;
+  z-index: 2;
   pointer-events: none;
+  transition: opacity .5s;
 }
 
 .photo-frame:hover::before {
-  top: 7px;
-  left: 7px;
-  opacity: .6;
+  opacity: 0.3;
 }
 
 .photo-frame img {
@@ -798,7 +806,8 @@ html:not(.dark) main>section:first-child {
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px; /* Increased for separation */
+  gap: 24px;
+  /* Increased for separation */
   background: transparent;
   border: none;
 }
@@ -807,7 +816,7 @@ html:not(.dark) main>section:first-child {
   background: var(--bg2);
   padding: 48px 36px;
   border: 1px solid var(--border2);
-  border-radius: 12px;
+  border-radius: 0;
   transition: all 0.3s ease;
 }
 
@@ -1292,7 +1301,7 @@ html:not(.dark) main>section:first-child {
   z-index: 2;
   background: rgba(16, 24, 40, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+  border-radius: 0;
   overflow: hidden;
   box-shadow:
     0 0 0 1px rgba(59, 111, 255, 0.15),
@@ -1866,8 +1875,8 @@ footer {
   }
 
   #hero {
-    padding-top: 100px;
-    /* Reduced from 120px to 100px */
+    padding-top: 160px;
+    /* Increased from 100px to 160px for more whitespace */
     text-align: center;
   }
 
@@ -1909,7 +1918,7 @@ footer {
   .photo-frame img {
     aspect-ratio: auto;
     /* Remove fixed square ratio to show full photo */
-    max-height: 400px;
+    /* max-height: 400px; */
     object-fit: contain;
   }
 
@@ -1987,7 +1996,7 @@ footer {
   /* Modal responsive */
   .modal-card {
     max-width: 95vw;
-    border-radius: 12px;
+    border-radius: 0;
   }
 
   .modal-nav {
@@ -2354,7 +2363,7 @@ footer {
 .contact-form-wrap {
   background: var(--surface);
   border: 1px solid var(--border2);
-  border-radius: 4px;
+  border-radius: 0;
   overflow: hidden;
   position: relative;
 }
@@ -2422,7 +2431,7 @@ footer {
   width: 100%;
   background: var(--bg);
   border: 1px solid var(--border2);
-  border-radius: 2px;
+  border-radius: 0;
   padding: 12px 16px;
   color: var(--text);
   font-family: var(--mono);
@@ -2458,7 +2467,7 @@ html:not(.dark) .form-textarea {
   background: var(--accent);
   color: #fff;
   border: none;
-  border-radius: 2px;
+  border-radius: 0;
   font-family: var(--mono);
   font-size: .64rem;
   letter-spacing: .18em;
@@ -2496,7 +2505,7 @@ html:not(.dark) .form-textarea {
 .form-msg {
   display: none;
   padding: 12px 16px;
-  border-radius: 2px;
+  border-radius: 0;
   font-family: var(--mono);
   font-size: .6rem;
   letter-spacing: .08em;
