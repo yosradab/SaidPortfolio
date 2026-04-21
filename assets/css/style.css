@@ -2758,3 +2758,69 @@ body.modal-open {
   opacity: 1;
   filter: grayscale(0) brightness(1);
 }
+
+/* ━━ EXP LOGO CHIPS — logo + name pairs ━━ */
+.exp-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-wrap: wrap;
+  margin-bottom: 12px !important;
+}
+
+.exp-logo-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Uniform square logo container — all logos same size */
+.exp-logo-box {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+
+.exp-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(0.2);
+  transition: filter 0.3s;
+}
+
+/* White background variant for dark logos (CRMN) */
+.exp-logo-box--white {
+  background: #ffffff;
+  border-color: rgba(255,255,255,0.2);
+  padding: 2px;
+}
+
+.exp-entry:hover .exp-logo-box {
+  background: rgba(75,126,255,0.1);
+}
+.exp-entry:hover .exp-logo-box img {
+  filter: grayscale(0);
+}
+
+/* The company name inside a chip */
+.exp-logo-chip .exp-co {
+  margin-bottom: 0 !important;
+  line-height: 1;
+}
+
+/* Separator dot between two chips */
+.exp-co-sep {
+  font-family: var(--mono);
+  font-size: .6rem;
+  color: var(--text3);
+  margin: 0 2px;
+}
