@@ -2629,4 +2629,85 @@ html:not(.dark) .form-textarea {
   .stats-inner {
     gap: 24px;
   }
+}/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PERFORMANCE ENHANCEMENTS
+   Append this block to the end of style.css
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/*
+  CSS CONTAINMENT
+  Tells the browser each section is an isolated layout/paint
+  context, so a transform on one card doesn't force a full-page
+  repaint. `content` = layout + style + paint.
+  We exclude `size` containment so sections can still auto-size.
+*/
+main > section:not(#hero),
+main > #projects-section,
+footer {
+  contain: layout style paint;
+}
+
+/*
+  GPU COMPOSITING LAYERS
+  Any element that will be transformed/filtered by JS should
+  live on its own compositor layer. This moves the animation
+  work off the main thread onto the GPU.
+*/
+#proj-track {
+  /* will-change: transform already present in base CSS — keep it.
+     translateZ(0) forces layer creation before the first scroll tick,
+     eliminating the one-frame jank on initial scroll-into-view. */
+  transform: translateZ(0);
+}
+
+#proj-sticky {
+  /* The sticky container benefits from its own layer so the browser
+     doesn't have to repaint the entire page on position change. */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/*
+  SECTION RECEDE LAYER PROMOTION
+  During the parallax recede effect, sections receive a CSS transform.
+  Declaring will-change here pre-allocates the compositor layer so
+  the first animated frame is never janky.
+*/
+main > section:not(#hero),
+main > #projects-section {
+  will-change: transform, filter;
+}
+
+/*
+  SCROLL SMOOTHING FOR MOBILE
+  On iOS/Android, -webkit-overflow-scrolling: touch enables momentum
+  scrolling. `overscroll-behavior-y: none` prevents rubber-band
+  propagation to the modal backdrop.
+*/
+html {
+  -webkit-overflow-scrolling: touch;
+}
+
+body.modal-open {
+  overscroll-behavior-y: none;
+}
+
+/*
+  IMAGE RENDERING OPTIMIZATION
+  For the blurred project cover images, `will-change: filter` lets
+  the browser composite the blur on the GPU rather than CPU.
+*/
+.img-wrap img,
+.reveal-blur {
+  will-change: filter, transform;
+}
+
+/*
+  CANVAS LAYER
+  The particle canvas should never trigger a page repaint.
+*/
+#particles-canvas {
+  will-change: contents;
+  /* Force own layer so particle draw calls don't dirty the hero layer */
+  transform: translateZ(0);
 }
