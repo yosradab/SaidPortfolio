@@ -2711,3 +2711,50 @@ body.modal-open {
   /* Force own layer so particle draw calls don't dirty the hero layer */
   transform: translateZ(0);
 }
+
+/* ━━ SKILL TOOL LOGOS ━━ */
+.sk-logo {
+  height: 16px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 8px;
+  vertical-align: middle;
+  opacity: 0.75;
+  filter: grayscale(0.3);
+  transition: opacity 0.3s, filter 0.3s;
+}
+.skitem:hover .sk-logo {
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+/* ━━ EXP HEADER — logos before name, vertically centred ━━ */
+.exp-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 14px !important;
+  margin-bottom: 10px !important;
+}
+.exp-header .exp-co {
+  margin-bottom: 0 !important;
+  line-height: 1;
+}
+.exp-branch-logos {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.exp-branch-logos img {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.75;
+  filter: grayscale(0.3) brightness(1.2);
+  transition: opacity 0.3s, filter 0.3s;
+}
+.exp-entry:hover .exp-branch-logos img {
+  opacity: 1;
+  filter: grayscale(0) brightness(1);
+}
