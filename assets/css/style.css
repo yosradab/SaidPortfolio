@@ -172,7 +172,8 @@ nav a {
   transition: color .3s;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {
   color: var(--text);
 }
 
@@ -2141,6 +2142,12 @@ footer {
   color: var(--text);
   text-decoration: none;
   letter-spacing: -.02em;
+  transition: color .3s;
+}
+
+.m-nav a:hover,
+.m-nav a.active {
+  color: var(--accent);
 }
 
 #menuBtn {

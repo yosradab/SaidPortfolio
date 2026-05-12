@@ -1,19 +1,18 @@
 (() => {
-  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-     PROJECT MODAL GALLERY
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  const modal        = document.getElementById('modal');
-  const modalCard    = document.getElementById('modalCard');
+
+
+  const modal = document.getElementById('modal');
+  const modalCard = document.getElementById('modalCard');
   const modalImgWrap = document.getElementById('modalImgWrap');
-  const modalClose   = document.getElementById('modalClose');
-  const backdrop     = document.getElementById('modalBackdrop');
-  const modalPrev    = document.getElementById('modalPrev');
-  const modalNext    = document.getElementById('modalNext');
+  const modalClose = document.getElementById('modalClose');
+  const backdrop = document.getElementById('modalBackdrop');
+  const modalPrev = document.getElementById('modalPrev');
+  const modalNext = document.getElementById('modalNext');
   const modalCounter = document.getElementById('modalCounter');
 
   let curGallery = [];
   let curGallIdx = 0;
-  let trackEl    = null;
+  let trackEl = null;
 
   function updateModalImg() {
     if (trackEl) trackEl.style.transform = `translateX(-${curGallIdx * 100}%)`;
@@ -71,16 +70,16 @@
   document.addEventListener('keydown', e => {
     if (modal.style.display !== 'flex') return;
     if (e.key === 'Escape') closeModal();
-    if (e.key === 'ArrowLeft'  && curGallery.length > 1) modalPrev.click();
+    if (e.key === 'ArrowLeft' && curGallery.length > 1) modalPrev.click();
     if (e.key === 'ArrowRight' && curGallery.length > 1) modalNext.click();
   });
 
   /* Modal swipe */
   let swipeStartX = 0, swipeEndX = 0, isDragging = false;
   modalImgWrap.addEventListener('touchstart', e => { swipeStartX = e.changedTouches[0].screenX; }, { passive: true });
-  modalImgWrap.addEventListener('touchend',   e => { swipeEndX = e.changedTouches[0].screenX; handleSwipe(); }, { passive: true });
-  modalImgWrap.addEventListener('mousedown',  e => { isDragging = true; swipeStartX = e.clientX; modalImgWrap.style.cursor = 'grabbing'; });
-  modalImgWrap.addEventListener('mouseup',    e => {
+  modalImgWrap.addEventListener('touchend', e => { swipeEndX = e.changedTouches[0].screenX; handleSwipe(); }, { passive: true });
+  modalImgWrap.addEventListener('mousedown', e => { isDragging = true; swipeStartX = e.clientX; modalImgWrap.style.cursor = 'grabbing'; });
+  modalImgWrap.addEventListener('mouseup', e => {
     if (!isDragging) return;
     isDragging = false; modalImgWrap.style.cursor = 'default'; swipeEndX = e.clientX; handleSwipe();
   });
@@ -103,7 +102,7 @@
   });
 
   /* ━━ CURSOR ━━ */
-  const cur  = document.getElementById('cur');
+  const cur = document.getElementById('cur');
   const ring = document.getElementById('curRing');
   let mx = 0, my = 0, rx = 0, ry = 0;
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
@@ -111,7 +110,7 @@
     rx += (mx - rx) * .12;
     ry += (my - ry) * .12;
     ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
+    ring.style.top = ry + 'px';
     requestAnimationFrame(animRing);
   })();
   document.querySelectorAll('a,button,.hstat,.spec-item,.skcard,.cert-card,.edu-card,.img-wrap').forEach(el => {
@@ -143,14 +142,31 @@
   }, { threshold: 0.3 });
   document.querySelectorAll('.edu-card').forEach(el => eduObs.observe(el));
 
+  /* ━━ SCROLLSPY ━━ */
+  const navLinks = document.querySelectorAll('nav a, .m-link');
+  const scrollspySections = document.querySelectorAll('main > section, main > #projects-section, #contact');
+  
+  const scrollspyObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-20% 0px -40% 0px' });
+  
+  scrollspySections.forEach(sec => scrollspyObs.observe(sec));
+
   /* ━━ STICKY PROJECTS SCROLL ━━ */
-  const N          = 5;
+  const N = 5;
   const projScroll = document.getElementById('proj-scroll');
-  const projTrack  = document.getElementById('proj-track');
-  const projFill   = document.getElementById('projFill');
-  const projCur    = document.getElementById('projCur');
-  const hints      = document.querySelectorAll('.proj-hint');
-  const pslides    = document.querySelectorAll('.pslide');
+  const projTrack = document.getElementById('proj-track');
+  const projFill = document.getElementById('projFill');
+  const projCur = document.getElementById('projCur');
+  const hints = document.querySelectorAll('.proj-hint');
+  const pslides = document.querySelectorAll('.pslide');
 
   // Cache hint text references to avoid repeated DOM reads
   const hintEN = [...hints].filter(h => h.classList.contains('lang-en'));
@@ -170,14 +186,14 @@
       projTrack.style.transform = '';
       return;
     }
-    const vh         = window.innerHeight;  // cached per call
-    const rect       = projScroll.getBoundingClientRect();
-    const headerH    = 104;
-    const dwell      = vh * 0.5;
+    const vh = window.innerHeight;  // cached per call
+    const rect = projScroll.getBoundingClientRect();
+    const headerH = 104;
+    const dwell = vh * 0.5;
     const scrollable = Math.max(1, projScroll.offsetHeight - (vh - headerH) - dwell);
-    const scrolled   = headerH - rect.top;
-    const progress   = Math.max(0, Math.min(1, scrolled / scrollable));
-    const tx         = progress * (N - 1) * (100 / N);
+    const scrolled = headerH - rect.top;
+    const progress = Math.max(0, Math.min(1, scrolled / scrollable));
+    const tx = progress * (N - 1) * (100 / N);
 
     projTrack.style.transform = `translateX(-${tx}%)`;
     if (projFill) projFill.style.width = (progress * 100) + '%';
@@ -199,7 +215,7 @@
       lastProjIdx = idx;
       pslides.forEach((slide, i) => {
         slide.querySelectorAll('video').forEach(v => {
-          Math.abs(i - idx) <= 1 ? v.play().catch(() => {}) : v.pause();
+          Math.abs(i - idx) <= 1 ? v.play().catch(() => { }) : v.pause();
         });
       });
     }
@@ -217,56 +233,49 @@
   }, { threshold: 0.06, rootMargin: '-40px 0px' });
   cardSections.forEach(sec => { if (!sec.classList.contains('card-visible')) cardObs.observe(sec); });
 
-  /* ━━ SHOPIFY-STYLE RECEDE PARALLAX ━━
-     PERF: Batch ALL getBoundingClientRect reads FIRST,
-     then do all style writes. This prevents layout thrashing
-     (interleaved read→write→read→write forces multiple reflows).
-  ━━ */
+
   let projScrollProgress = 0;
-  const cardSectionsArr  = Array.from(cardSections); // static array for indexed access
+  const cardSectionsArr = Array.from(cardSections); // static array for indexed access
 
   function updateRecede() {
     if (isMobile()) return;
     const isDark = document.documentElement.classList.contains('dark');
-    const vh     = window.innerHeight;
+    const vh = window.innerHeight;
 
     // ── PHASE 1: batch all reads (no style writes here) ──
     const rects = cardSectionsArr.map(sec => sec.getBoundingClientRect());
 
     // ── PHASE 2: batch all writes ──
     cardSectionsArr.forEach((sec, i) => {
-      const rect      = rects[i];
-      const isProj    = sec.id === 'projects-section';
+      const rect = rects[i];
+      const isProj = sec.id === 'projects-section';
 
       if (isProj) {
         if (projScrollProgress < 0.99) { sec.style.filter = ''; return; }
         if (rect.bottom < vh && rect.bottom > 0) {
           const exitProgress = Math.min(1, 1 - rect.bottom / vh);
-          const scale        = 1 - exitProgress * 0.04;
+          const scale = 1 - exitProgress * 0.04;
           sec.style.transform = `translateY(${exitProgress * -24}px) scale(${scale})`;
-          sec.style.filter    = isDark ? `brightness(${1 - exitProgress * 0.25})` : '';
+          sec.style.filter = isDark ? `brightness(${1 - exitProgress * 0.25})` : '';
         } else {
-          sec.style.filter    = '';
+          sec.style.filter = '';
         }
         return;
       }
 
       if (rect.top < 0 && rect.bottom > 0) {
         const exitProgress = Math.min(1, Math.abs(rect.top) / (rect.height * 0.5));
-        const scale        = 1 - exitProgress * 0.04;
+        const scale = 1 - exitProgress * 0.04;
         sec.style.transform = `translateY(${exitProgress * -24}px) scale(${scale})`;
-        sec.style.filter    = isDark ? `brightness(${1 - exitProgress * 0.25})` : '';
+        sec.style.filter = isDark ? `brightness(${1 - exitProgress * 0.25})` : '';
       } else if (rect.top >= 0) {
-        sec.style.filter    = '';
+        sec.style.filter = '';
         sec.style.transform = '';
       }
     });
   }
 
-  /* ━━ UNIFIED RAF-THROTTLED SCROLL HANDLER ━━
-     A single rAF token ensures all scroll work runs
-     at most once per display frame, never more.
-  ━━ */
+
   let scrollRAF = null;
   window.addEventListener('scroll', () => {
     if (scrollRAF) return;
@@ -305,13 +314,13 @@
 
   /* ━━ MOBILE NAV ━━ */
   const menuBtn = document.getElementById('menuBtn');
-  const mNav    = document.getElementById('mNav');
+  const mNav = document.getElementById('mNav');
   if (menuBtn && mNav) {
     menuBtn.addEventListener('click', () => {
       mNav.classList.toggle('active');
       const icon = menuBtn.querySelector('i');
-      icon.classList.toggle('fa-bars',  !mNav.classList.contains('active'));
-      icon.classList.toggle('fa-times',  mNav.classList.contains('active'));
+      icon.classList.toggle('fa-bars', !mNav.classList.contains('active'));
+      icon.classList.toggle('fa-times', mNav.classList.contains('active'));
     });
     document.querySelectorAll('.m-link').forEach(link => {
       link.addEventListener('click', () => {
@@ -322,12 +331,7 @@
     });
   }
 
-  /* ━━ PARTICLES ━━
-     PERF optimizations:
-     - Use squared distance check (d² < maxD²) to skip sqrt for distant pairs
-     - Pre-compute colour strings once, not every frame
-     - Integer-approximate blended colour with bit-shift
-  ━━ */
+
   (() => {
     const canvas = document.getElementById('particles-canvas');
     if (!canvas) return;
@@ -339,31 +343,31 @@
     window.addEventListener('resize', resize);
 
     const palette = [
-      [75,  126, 255],
-      [255, 112,  64],
-      [16,  185, 129],
-      [168,  85, 247],
-      [251, 191,  36],
-      [236,  72, 153],
+      [75, 126, 255],
+      [255, 112, 64],
+      [16, 185, 129],
+      [168, 85, 247],
+      [251, 191, 36],
+      [236, 72, 153],
     ];
 
     for (let i = 0; i < 80; i++) {
       const col = palette[Math.floor(Math.random() * palette.length)];
       pts.push({
-        x:     Math.random() * 2000,
-        y:     Math.random() * 1000,
-        vx:    (Math.random() - .5) * .5,
-        vy:    (Math.random() - .5) * .5,
-        r:     Math.random() * 1.6 + .5,
+        x: Math.random() * 2000,
+        y: Math.random() * 1000,
+        vx: (Math.random() - .5) * .5,
+        vy: (Math.random() - .5) * .5,
+        r: Math.random() * 1.6 + .5,
         col,
         pulse: Math.random() * Math.PI * 2,
         // Pre-compute fill / glow colour strings (static per particle)
-        fillStyle:  `rgba(${col[0]},${col[1]},${col[2]},0.65)`,
-        glowStyle:  `rgba(${col[0]},${col[1]},${col[2]},0.15)`,
+        fillStyle: `rgba(${col[0]},${col[1]},${col[2]},0.65)`,
+        glowStyle: `rgba(${col[0]},${col[1]},${col[2]},0.15)`,
       });
     }
 
-    const MAX_D  = 130;
+    const MAX_D = 130;
     const MAX_D2 = MAX_D * MAX_D; // 16900 — avoid sqrt unless needed
 
     let tick = 0;
@@ -373,7 +377,7 @@
 
       // Move & draw dots
       for (let i = 0; i < pts.length; i++) {
-        const p  = pts[i];
+        const p = pts[i];
         p.x += p.vx; p.y += p.vy;
         if (p.x < 0 || p.x > W) p.vx *= -1;
         if (p.y < 0 || p.y > H) p.vy *= -1;
@@ -387,7 +391,7 @@
         ctx.beginPath();
         ctx.arc(p.x, p.y, pr + 2, 0, Math.PI * 2);
         ctx.strokeStyle = p.glowStyle;
-        ctx.lineWidth   = 1.5;
+        ctx.lineWidth = 1.5;
         ctx.stroke();
       }
 
@@ -399,11 +403,11 @@
           const d2 = dx * dx + dy * dy;
           if (d2 >= MAX_D2) continue;        // early exit — no sqrt needed
 
-          const d     = Math.sqrt(d2);
+          const d = Math.sqrt(d2);
           const alpha = 0.18 * (1 - d / MAX_D);
           // Fast integer blend via right-shift
-          const [r1,g1,b1] = pts[i].col;
-          const [r2,g2,b2] = pts[j].col;
+          const [r1, g1, b1] = pts[i].col;
+          const [r2, g2, b2] = pts[j].col;
           const mr = (r1 + r2) >> 1;
           const mg = (g1 + g2) >> 1;
           const mb = (b1 + b2) >> 1;
@@ -412,7 +416,7 @@
           ctx.moveTo(pts[i].x, pts[i].y);
           ctx.lineTo(pts[j].x, pts[j].y);
           ctx.strokeStyle = `rgba(${mr},${mg},${mb},${alpha})`;
-          ctx.lineWidth   = 0.7;
+          ctx.lineWidth = 0.7;
           ctx.stroke();
         }
       }
@@ -426,15 +430,15 @@
   (() => {
     const el = document.getElementById('typed-role');
     if (!el) return;
-    const texts   = ['Electrical Design Engineer','CATIA V5 · Siemens NX Expert','EV Powertrain Specialist','Aerospace & Automotive','PLM · 3D Harness Routing'];
-    const frTexts = ['Ingénieur Conception Électrique','Expert CATIA V5 · Siemens NX','Spécialiste en Groupes Motopropulseurs VE','Aéronautique & Automobile','Conception de Faisceaux 3D · PLM'];
+    const texts = ['Electrical Design Engineer', 'CATIA V5 · Siemens NX Expert', 'EV Powertrain Specialist', 'Aerospace & Automotive', 'PLM · 3D Harness Routing'];
+    const frTexts = ['Ingénieur Conception Électrique', 'Expert CATIA V5 · Siemens NX', 'Spécialiste en Groupes Motopropulseurs VE', 'Aéronautique & Automobile', 'Conception de Faisceaux 3D · PLM'];
     let ti = 0, ci = 0, deleting = false;
     function type() {
       const isFr = document.documentElement.classList.contains('fr');
-      const t    = (isFr ? frTexts : texts)[ti];
+      const t = (isFr ? frTexts : texts)[ti];
       el.textContent = deleting ? t.slice(0, --ci) : t.slice(0, ++ci);
-      if (!deleting && ci === t.length)  { deleting = true; setTimeout(type, 2200); return; }
-      if (deleting  && ci === 0)         { deleting = false; ti = (ti + 1) % texts.length; }
+      if (!deleting && ci === t.length) { deleting = true; setTimeout(type, 2200); return; }
+      if (deleting && ci === 0) { deleting = false; ti = (ti + 1) % texts.length; }
       setTimeout(type, deleting ? 34 : 68);
     }
     setTimeout(type, 800);
@@ -461,11 +465,10 @@
   })();
 
   /* ━━ CONTACT FORM (EmailJS) ━━ */
-  const contactForm    = document.getElementById('contact-form');
-  const contactMsg     = document.getElementById('cf-msg');
-  const contactBtn     = document.getElementById('cf-btn');
+  const contactForm = document.getElementById('contact-form');
+  const contactMsg = document.getElementById('cf-msg');
+  const contactBtn = document.getElementById('cf-btn');
   const contactBtnText = document.getElementById('cf-btn-text');
-
   if (window.emailjs) emailjs.init("Gr6HKmOLlYUFzNUb5");
 
   if (contactForm) {
@@ -474,19 +477,21 @@
       contactBtn.disabled = true;
       const originalBtnHtml = contactBtnText.innerHTML;
       contactBtnText.textContent = lang === 'fr' ? 'Envoi...' : 'Sending...';
+
+
       emailjs.sendForm('service_gzav76g', 'template_qdfvj4l', contactForm)
         .then(() => {
           contactMsg.textContent = lang === 'fr' ? '✓ Message envoyé avec succès !' : '✓ Message sent successfully!';
-          contactMsg.className   = 'form-msg success';
+          contactMsg.className = 'form-msg success';
           contactForm.reset();
         })
         .catch(err => {
           console.error('EmailJS Error:', err);
           contactMsg.textContent = lang === 'fr' ? '✕ Erreur lors de l\'envoi. Réessayez.' : '✕ Error sending. Please try again.';
-          contactMsg.className   = 'form-msg error';
+          contactMsg.className = 'form-msg error';
         })
         .finally(() => {
-          contactBtn.disabled      = false;
+          contactBtn.disabled = false;
           contactBtnText.innerHTML = originalBtnHtml;
           setTimeout(() => { if (contactMsg) contactMsg.className = 'form-msg'; }, 5000);
         });
