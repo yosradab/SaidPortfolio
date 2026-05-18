@@ -1697,12 +1697,25 @@ html:not(.dark) main>section:first-child {
   height: 100%;
   object-fit: cover;
   opacity: .85;
-  transition: transform .5s, opacity .5s;
+  transition: opacity .5s;
+  filter: none !important;
 }
 
 .cert-card:hover .cert-media img {
-  transform: scale(1.06);
   opacity: 1;
+}
+
+/* Force zero blur and remove overlays inside cert cards */
+.cert-media.img-wrap img {
+  filter: none !important;
+  transform: none !important;
+}
+.cert-media.img-wrap:hover img {
+  filter: none !important;
+  transform: none !important;
+}
+.cert-media.img-wrap .img-view-overlay {
+  display: none !important;
 }
 
 .cert-pdf {
