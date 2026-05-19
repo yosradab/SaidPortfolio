@@ -171,6 +171,7 @@
   // Cache hint text references to avoid repeated DOM reads
   const hintEN = [...hints].filter(h => h.classList.contains('lang-en'));
   const hintFR = [...hints].filter(h => h.classList.contains('lang-fr'));
+  const hintDE = [...hints].filter(h => h.classList.contains('lang-de'));
 
   function isMobile() { return window.innerWidth <= 1024; }
 
@@ -208,6 +209,7 @@
       _wasAtEnd = atEnd;
       hintEN.forEach(h => { h.textContent = atEnd ? 'End of Selection ⊼' : 'Scroll to explore →'; });
       hintFR.forEach(h => { h.textContent = atEnd ? 'Fin de Sélection ⊼' : 'Défiler pour explorer →'; });
+      hintDE.forEach(h => { h.textContent = atEnd ? 'Ende der Auswahl ⊼' : 'Scrollen zum Erkunden →'; });
     }
 
     // Play/pause videos only when active slide changes
@@ -300,8 +302,15 @@
   /* ━━ LANGUAGE ━━ */
   let lang = 'en';
   document.getElementById('langBtn').addEventListener('click', () => {
-    lang = lang === 'en' ? 'fr' : 'en';
+    if (lang === 'en') {
+      lang = 'fr';
+    } else if (lang === 'fr') {
+      lang = 'de';
+    } else {
+      lang = 'en';
+    }
     document.documentElement.classList.toggle('fr', lang === 'fr');
+    document.documentElement.classList.toggle('de', lang === 'de');
     _wasAtEnd = !_wasAtEnd; // force hint refresh on next updateProj
   });
 
@@ -432,10 +441,12 @@
     if (!el) return;
     const texts = ['Electrical Design Engineer', 'CATIA V5 · Siemens NX Expert', 'EV Powertrain Specialist', 'Aerospace & Automotive', 'PLM · 3D Harness Routing'];
     const frTexts = ['Ingénieur Conception Électrique', 'Expert CATIA V5 · Siemens NX', 'Spécialiste en Groupes Motopropulseurs VE', 'Aéronautique & Automobile', 'Conception de Faisceaux 3D · PLM'];
+    const deTexts = ['Ingenieur Elektrokonstruktion', 'Experte CATIA V5 · Siemens NX', 'Spezialist für E-Antriebsstränge', 'Luftfahrt & Automobilindustrie', 'PLM · 3D-Leitungssatzentwicklung'];
     let ti = 0, ci = 0, deleting = false;
     function type() {
       const isFr = document.documentElement.classList.contains('fr');
-      const t = (isFr ? frTexts : texts)[ti];
+      const isDe = document.documentElement.classList.contains('de');
+      const t = isFr ? frTexts[ti] : (isDe ? deTexts[ti] : texts[ti]);
       el.textContent = deleting ? t.slice(0, --ci) : t.slice(0, ++ci);
       if (!deleting && ci === t.length) { deleting = true; setTimeout(type, 2200); return; }
       if (deleting && ci === 0) { deleting = false; ti = (ti + 1) % texts.length; }
@@ -476,18 +487,18 @@
       e.preventDefault();
       contactBtn.disabled = true;
       const originalBtnHtml = contactBtnText.innerHTML;
-      contactBtnText.textContent = lang === 'fr' ? 'Envoi...' : 'Sending...';
+      contactBtnText.textContent = lang === 'fr' ? 'Envoi...' : (lang === 'de' ? 'Senden...' : 'Sending...');
 
 
       emailjs.sendForm('service_gzav76g', 'template_qdfvj4l', contactForm)
         .then(() => {
-          contactMsg.textContent = lang === 'fr' ? '✓ Message envoyé avec succès !' : '✓ Message sent successfully!';
+          contactMsg.textContent = lang === 'fr' ? '✓ Message envoyé avec succès !' : (lang === 'de' ? '✓ Nachricht erfolgreich gesendet!' : '✓ Message sent successfully!');
           contactMsg.className = 'form-msg success';
           contactForm.reset();
         })
         .catch(err => {
           console.error('EmailJS Error:', err);
-          contactMsg.textContent = lang === 'fr' ? '✕ Erreur lors de l\'envoi. Réessayez.' : '✕ Error sending. Please try again.';
+          contactMsg.textContent = lang === 'fr' ? '✕ Erreur lors de l\'envoi. Réessayez.' : (lang === 'de' ? '✕ Fehler beim Senden. Bitte versuchen Sie es erneut.' : '✕ Error sending. Please try again.');
           contactMsg.className = 'form-msg error';
         })
         .finally(() => {
