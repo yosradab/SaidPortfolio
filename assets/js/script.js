@@ -360,13 +360,13 @@
       [236, 72, 153],
     ];
 
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 50; i++) {
       const col = palette[Math.floor(Math.random() * palette.length)];
       pts.push({
         x: Math.random() * 2000,
         y: Math.random() * 1000,
-        vx: (Math.random() - .5) * .5,
-        vy: (Math.random() - .5) * .5,
+        vx: (Math.random() - .5) * .28,
+        vy: (Math.random() - .5) * .28,
         r: Math.random() * 1.6 + .5,
         col,
         pulse: Math.random() * Math.PI * 2,
