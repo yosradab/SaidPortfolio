@@ -475,6 +475,40 @@
     obs.observe(bar);
   })();
 
+  /* ━━ RECOMMENDATIONS CAROUSEL ━━ */
+  (() => {
+    const carousel = document.querySelector('[data-rec-carousel]');
+    if (!carousel) return;
+
+    const track = carousel.querySelector('.rec-track');
+    const cards = [...carousel.querySelectorAll('.rec-card')];
+    const dots = [...carousel.querySelectorAll('[data-rec-dot]')];
+    const current = carousel.querySelector('[data-rec-current]');
+    const total = carousel.querySelector('[data-rec-total]');
+    const prev = carousel.querySelector('[data-rec-prev]');
+    const next = carousel.querySelector('[data-rec-next]');
+    if (!track || cards.length < 2) return;
+
+    let index = 0;
+    if (total) total.textContent = String(cards.length).padStart(2, '0');
+    const show = nextIndex => {
+      index = (nextIndex + cards.length) % cards.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      cards.forEach((card, i) => card.classList.toggle('is-active', i === index));
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+      if (current) current.textContent = String(index + 1).padStart(2, '0');
+    };
+
+    prev?.addEventListener('click', () => show(index - 1));
+    next?.addEventListener('click', () => show(index + 1));
+    dots.forEach(dot => dot.addEventListener('click', () => show(+dot.dataset.recDot || 0)));
+
+    carousel.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') show(index - 1);
+      if (e.key === 'ArrowRight') show(index + 1);
+    });
+  })();
+
   /* ━━ CONTACT FORM (EmailJS) ━━ */
   const contactForm = document.getElementById('contact-form');
   const contactMsg = document.getElementById('cf-msg');

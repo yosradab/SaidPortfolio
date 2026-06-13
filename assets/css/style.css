@@ -1789,6 +1789,306 @@ html:not(.dark) main>section:first-child {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RECOMMENDATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.rec-carousel {
+  position: relative;
+}
+
+.rec-stage {
+  position: relative;
+  overflow: hidden;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.rec-rail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 18px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.rec-kicker,
+.rec-count {
+  font-family: var(--mono);
+  font-size: .56rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text2);
+}
+
+.rec-count {
+  display: flex;
+  gap: 8px;
+}
+
+.rec-count span:first-child {
+  color: var(--accent);
+}
+
+.rec-viewport {
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.rec-track {
+  display: flex;
+  transition: transform .55s cubic-bezier(.16, 1, .3, 1);
+}
+
+.rec-card {
+  min-width: 100%;
+  background: var(--surface);
+  padding: 20px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: background .3s;
+}
+
+.rec-card:hover {
+  background: var(--surface);
+}
+
+.rec-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--accent);
+  transition: height .55s cubic-bezier(.16, 1, .3, 1);
+}
+
+.rec-card.is-active::after,
+.rec-card:hover::after {
+  height: 100%;
+}
+
+.rec-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 122px;
+  margin-bottom: 14px;
+}
+
+.rec-logo {
+  width: 46px;
+  height: 46px;
+  padding: 5px;
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.rec-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.rec-logo-initial {
+  background: #c91a75;
+  border-color: rgba(255, 255, 255, .55);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0;
+}
+
+.rec-head h3 {
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.rec-relation {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 6px 11px;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  font-family: var(--mono);
+  font-size: .52rem;
+  letter-spacing: .06em;
+  color: var(--text2);
+  line-height: 1.35;
+}
+
+.rec-status {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  padding: 6px 10px;
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  font-family: var(--mono);
+  font-size: .54rem;
+  letter-spacing: .05em;
+  color: var(--accent);
+}
+
+.rec-quote-mark {
+  position: absolute;
+  right: 24px;
+  bottom: 12px;
+  font-family: var(--serif);
+  font-size: 5.6rem;
+  line-height: 1;
+  color: var(--accent);
+  opacity: .1;
+  margin: 0;
+  pointer-events: none;
+}
+
+.rec-copy {
+  color: var(--text2);
+  font-size: .84rem;
+  line-height: 1.45;
+  max-width: none;
+  padding-right: 32px;
+}
+
+.rec-copy br {
+  display: block;
+  content: '';
+  margin-top: 5px;
+}
+
+.rec-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.rec-date {
+  margin-top: 12px;
+  font-family: var(--mono);
+  font-size: .56rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text2);
+}
+
+.rec-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  padding: 8px 18px 14px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.rec-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.rec-btn:hover {
+  border-color: var(--accent);
+  color: #fff;
+  background: var(--accent);
+}
+
+.rec-btn[data-rec-next] {
+  animation: recArrowHint 1.8s ease-in-out infinite;
+}
+
+.rec-btn[data-rec-next] i {
+  display: inline-block;
+  animation: recIconHint 1.8s ease-in-out infinite;
+}
+
+.rec-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rec-dot {
+  width: 20px;
+  height: 3px;
+  border: 0;
+  border-radius: 100px;
+  background: var(--border2);
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.rec-dot.active {
+  width: 34px;
+  background: var(--accent);
+}
+
+.rec-dot:not(.active) {
+  animation: recDotHint 1.8s ease-in-out infinite;
+}
+
+@keyframes recArrowHint {
+  0%,
+  100% {
+    border-color: var(--border2);
+    box-shadow: none;
+  }
+
+  50% {
+    border-color: var(--accent);
+    box-shadow: 0 0 18px rgba(59, 111, 255, .18);
+  }
+}
+
+@keyframes recIconHint {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes recDotHint {
+  0%,
+  100% {
+    opacity: .45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rec-btn[data-rec-next],
+  .rec-btn[data-rec-next] i,
+  .rec-dot:not(.active) {
+    animation: none;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    FOOTER
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 footer {
@@ -1987,6 +2287,17 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .rec-head {
+    padding-right: 0;
+    align-items: flex-start;
+  }
+
+  .rec-status {
+    position: static;
+    display: inline-flex;
+    margin-bottom: 12px;
+  }
+
   .exp-entry {
     grid-template-columns: 1fr;
     padding-left: 28px;
@@ -2067,6 +2378,41 @@ footer {
   .skills-grid,
   .cert-grid {
     grid-template-columns: 1fr;
+  }
+
+  .rec-card {
+    padding: 20px 18px;
+  }
+
+  .rec-relation {
+    border-radius: 8px;
+  }
+
+  .rec-rail,
+  .rec-controls {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .rec-head {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+
+  .rec-copy {
+    padding-right: 0;
+  }
+
+  .rec-quote-mark {
+    right: 18px;
+    bottom: 8px;
+    font-size: 4.4rem;
+  }
+
+  .rec-logo {
+    width: 46px;
+    height: 46px;
   }
 
   footer {
