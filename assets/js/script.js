@@ -145,19 +145,24 @@
   /* ━━ SCROLLSPY ━━ */
   const navLinks = document.querySelectorAll('nav a, .m-link');
   const scrollspySections = document.querySelectorAll('main > section, main > #projects-section, main > #recommendations, #contact');
-  
-  const scrollspyObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const id = e.target.id;
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-        });
+
+  function updateNavActive() {
+    if (!scrollspySections.length) return;
+    const headerH = 104;
+    const triggerLine = headerH + 16;
+    let activeId = scrollspySections[0].id;
+
+    scrollspySections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= triggerLine && rect.bottom > triggerLine) {
+        activeId = sec.id;
       }
     });
-  }, { threshold: 0.3, rootMargin: '-20% 0px -40% 0px' });
-  
-  scrollspySections.forEach(sec => scrollspyObs.observe(sec));
+
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${activeId}`);
+    });
+  }
 
   /* ━━ STICKY PROJECTS SCROLL ━━ */
   const N = 5;
@@ -300,6 +305,7 @@
       updateProj();
       updateRec();
       updateRecede();
+      updateNavActive();
       scrollRAF = null;
     });
   }, { passive: true });
@@ -313,6 +319,7 @@
       setupRec();
       updateProj();
       updateRec();
+      updateNavActive();
     }, 120);
   });
 
@@ -493,7 +500,7 @@
   })();
 
   /* ━━ RECOMMENDATIONS — SCROLL-DRIVEN POST-IT BOARD (same technique as Selected Works) ━━ */
-  const RN = 6;
+  const RN = 3;
   const recScroll = document.getElementById('rec-scroll');
   const recTrack = document.getElementById('rec-track');
   const recFill = document.getElementById('recFill');
@@ -506,6 +513,7 @@
   const recHintDE = [...recHints].filter(h => h.classList.contains('lang-de'));
 
   let recScrollProgress = 0;
+  let recFrozen = false;
 
   function setupRec() {
     if (!recScroll) return;
@@ -520,42 +528,85 @@
     if (isMobile() || document.body.classList.contains('modal-open')) {
       if (!isMobile()) return;
       recTrack.style.transform = '';
-      recSlides.forEach(s => s.querySelector('.postit')?.classList.add('is-active'));
+      recSlides.forEach(s => s.querySelectorAll('.postit').forEach(p => p.classList.add('is-active')));
       return;
     }
     const vh = window.innerHeight;
     const rect = recScroll.getBoundingClientRect();
     const headerH = 104;
     const dwell = vh * 0.5;
-    const scrollable = Math.max(1, recScroll.offsetHeight - (vh - headerH) - dwell);
+    // Small end offset so the page finishes shortly after the final card appears
+    const endOffset = vh * 0.12; // tweak this value to control how much extra scroll remains
+    const scrollable = Math.max(1, recScroll.offsetHeight - (vh - headerH) - dwell - endOffset);
     const scrolled = headerH - rect.top;
     const progress = Math.max(0, Math.min(1, scrolled / scrollable));
-    const tx = progress * (RN - 1) * (100 / RN);
 
-    recTrack.style.transform = `translateX(-${tx}%)`;
-    if (recFill) recFill.style.width = (progress * 100) + '%';
-    recScrollProgress = progress;
+    // Freeze behaviour: once we reach the end (last card fully visible), stop moving the track
+    if (progress >= 0.99) {
+      recFrozen = true;
+    } else {
+      recFrozen = false;
+    }
 
-    const idx = Math.min(RN - 1, Math.floor(progress * RN));
+    // Calculate translation in pixels so the final position aligns with the track width
+    const recSticky = document.getElementById('rec-sticky');
+    const containerWidth = recSticky ? recSticky.clientWidth : window.innerWidth;
+    const maxTx = Math.max(0, recTrack.scrollWidth - containerWidth);
+    const txPx = recFrozen ? maxTx : progress * maxTx;
+
+    recTrack.style.transform = `translateX(-${txPx}px)`;
+    if (recFill) recFill.style.width = (recFrozen ? 100 : (progress * 100)) + '%';
+    recScrollProgress = recFrozen ? 1 : progress;
+
+    const idx = recFrozen ? RN - 1 : Math.min(RN - 1, Math.floor(progress * RN));
     if (recCur) recCur.textContent = idx + 1;
 
-    const atEnd = progress >= 0.99;
+    const atEnd = recFrozen;
     if (atEnd !== _recWasAtEnd) {
       _recWasAtEnd = atEnd;
       recHintEN.forEach(h => { h.textContent = atEnd ? 'End of Selection ⊼' : 'Scroll to explore →'; });
       recHintFR.forEach(h => { h.textContent = atEnd ? 'Fin de Sélection ⊼' : 'Défiler pour explorer →'; });
       recHintDE.forEach(h => { h.textContent = atEnd ? 'Ende der Auswahl ⊼' : 'Scrollen zum Erkunden →'; });
+      // Toggle CSS class to trigger end animation
+      if (recTrack) {
+        recTrack.classList.toggle('rec-end', atEnd);
+      }
     }
 
     if (idx !== lastRecIdx) {
       lastRecIdx = idx;
       recSlides.forEach((slide, i) => {
-        slide.querySelector('.postit')?.classList.toggle('is-active', i === idx);
+        const posts = slide.querySelectorAll('.postit');
+        posts.forEach((p, j) => {
+          // On desktop only the first postit in the active slide is highlighted.
+          const shouldActive = i === idx && j === 0;
+          p.classList.toggle('is-active', shouldActive);
+          // add a small pop animation when becoming active
+          if (shouldActive) {
+            p.classList.remove('rec-pop');
+            // force reflow then add class to retrigger animation
+            void p.offsetWidth;
+            p.classList.add('rec-pop');
+          } else {
+            p.classList.remove('rec-pop');
+          }
+        });
       });
     }
   }
 
   setupRec();
+  // Initialize recommendation board state on load
+  updateRec();
+
+  // Debug: for desktop preview, forcer la première postit en active
+  if (!isMobile() && recSlides && recSlides.length) {
+    recSlides.forEach((slide, i) => {
+      slide.querySelectorAll('.postit').forEach((p, j) => {
+        p.classList.toggle('is-active', i === 0 && j === 0);
+      });
+    });
+  }
 
   /* ━━ CONTACT FORM (EmailJS) ━━ */
   const contactForm = document.getElementById('contact-form');

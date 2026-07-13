@@ -172,9 +172,12 @@ nav a {
   transition: color .3s;
 }
 
-nav a:hover,
-nav a.active {
+nav a:hover {
   color: var(--text);
+}
+
+nav a.active {
+  color: var(--accent);
 }
 
 .hctrl {
@@ -1813,13 +1816,13 @@ html:not(.dark) main>section:first-child {
   inset: 0;
   background:
     radial-gradient(circle at 18% 22%, var(--accent-lo), transparent 42%),
-    radial-gradient(circle at 82% 78%, rgba(255, 112, 64, 0.10), transparent 45%);
+    radial-gradient(circle at 82% 78%, rgba(37, 99, 235, 0.09), transparent 45%);
   background-color: var(--bg2);
   background-image:
     linear-gradient(var(--border) 1px, transparent 1px),
     linear-gradient(90deg, var(--border) 1px, transparent 1px),
     radial-gradient(circle at 18% 22%, var(--accent-lo), transparent 42%),
-    radial-gradient(circle at 82% 78%, rgba(255, 112, 64, 0.10), transparent 45%);
+    radial-gradient(circle at 82% 78%, rgba(37, 99, 235, 0.09), transparent 45%);
   background-size: 42px 42px, 42px 42px, auto, auto;
   z-index: 0;
 }
@@ -1827,7 +1830,7 @@ html:not(.dark) main>section:first-child {
 #rec-track {
   display: flex;
   height: 100%;
-  width: 600%;
+  width: auto;
   will-change: transform;
   position: relative;
   z-index: 1;
@@ -1835,30 +1838,31 @@ html:not(.dark) main>section:first-child {
 }
 
 .rec-slide {
-  flex: 0 0 calc(100% / 6);
+  flex: 0 0 50vw;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px;
+  gap: 20px;
+  padding: 24px 16px;
 }
 
 /* ── The note itself ── */
 .postit {
   --rot: 0deg;
-  width: min(92vw, 620px);
-  height: min(76vh, 640px);
-  background: var(--note, #ffd873);
-  color: #1c1a12;
-  padding: 40px 40px 28px;
+  /* Uniform desktop size */
+  width: 650px;
+  height: 450px;
+  background: var(--note, #ffffff);
+  color: #16233c;
+  font-size: .90rem;
+  padding: 28px 28px 18px;
   display: flex;
   flex-direction: column;
   position: relative;
-  transform: rotate(var(--rot)) scale(0.94);
-  box-shadow:
-    0 18px 30px rgba(0, 0, 0, 0.22),
-    0 2px 0 rgba(0, 0, 0, 0.06) inset;
-  transition: transform .6s cubic-bezier(.16, 1, .3, 1), box-shadow .6s ease;
+  transform: rotate(0deg) scale(0.94);
+  box-shadow: 0 14px 26px rgba(16, 32, 64, 0.12);
+  transition: transform .35s cubic-bezier(.16, 1, .3, 1), box-shadow .35s ease, background .18s;
   will-change: transform;
 }
 
@@ -1868,38 +1872,101 @@ html:not(.dark) main>section:first-child {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 34px;
-  height: 34px;
-  background: linear-gradient(135deg, transparent 50%, rgba(0, 0, 0, 0.16) 50%);
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, transparent 50%, rgba(37, 99, 235, 0.12) 50%);
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
 }
 
 .postit.is-active {
-  transform: rotate(0deg) scale(1.02);
+  transform: rotate(0deg) scale(1.01);
   box-shadow:
-    0 34px 60px rgba(0, 0, 0, 0.3),
-    0 2px 0 rgba(0, 0, 0, 0.06) inset;
+    0 26px 46px rgba(16, 32, 64, 0.22),
+    0 2px 0 rgba(16, 32, 64, 0.05) inset,
+    0 0 0 1px rgba(37, 99, 235, 0.14);
+}
+
+/* Enhanced active state for desktop — stronger lift, softer curl and darker text */
+.postit.is-active {
+  --fa-style-family-brands: "Font Awesome 6 Brands";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+  --fa-style-family-classic: "Font Awesome 6 Free";
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+  --warm: #ff7040;
+  font-family: var(--serif);
+  transform: rotate(0deg) scale(1.04);
+  background: #fff;
+  box-shadow: 0px 40px 70px 0px #10204047;
+  display: flex;
+  flex-direction: column;
+  line-height: 27.2px;
+  padding: 28px 28px 18px;
+  z-index: 10;
+  transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s ease, background .18s;
+  --note: #ffffff;
+  --rot: -2.5deg;
+  width: 650px;
+  height: 450px;
+}
+
+/* Entry pop animation when a card becomes active while scrolling */
+@keyframes recPop {
+  0% { transform: translateY(12px) scale(.98); opacity: 0; }
+  60% { transform: translateY(-6px) scale(1.03); opacity: 1; }
+  100% { transform: translateY(0) scale(1.04); opacity: 1; }
+}
+.postit.rec-pop {
+  animation: recPop 520ms cubic-bezier(.2,.9,.3,1) 1;
+}
+
+@media (max-width: 1024px) {
+  .postit {
+    width: calc((100% - 20px) / 2);
+    height: min(56vh, 450px);
+    transform: rotate(var(--rot)) scale(0.94);
+  }
+}
+
+.postit.is-active::after {
+  /* make the curled corner more visible when active */
+  background: linear-gradient(135deg, transparent 50%, rgba(37, 99, 235, 0.18) 50%);
+}
+
+.postit.is-active .postit-pin {
+  width: 34px;
+  height: 34px;
+  box-shadow: 0 10px 18px rgba(16,32,64,0.28), 0 0 18px rgba(75,126,255,0.08);
+}
+
+.postit.is-active .postit-copy {
+  color: #0f2b55; /* slightly deeper blue for better contrast */
+}
+
+.postit.is-active .postit-company,
+.postit.is-active .postit-name {
+  color: #0b2340;
 }
 
 .postit:hover {
-  transform: rotate(0deg) scale(1.03);
+  transform: rotate(0deg) scale(1.02);
 }
 
 .postit-pin {
   position: absolute;
-  top: -14px;
+  top: -12px;
   left: 50%;
   transform: translateX(-50%) rotate(-8deg);
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #ff8a6b, #d8432a 70%);
+  background: radial-gradient(circle at 35% 30%, #6d97ff, var(--accent) 70%);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, .9);
-  font-size: .8rem;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, .95);
+  font-size: .68rem;
+  box-shadow: 0 6px 10px rgba(16, 32, 64, 0.3);
   transition: transform .4s ease;
 }
 
@@ -1915,22 +1982,22 @@ html:not(.dark) main>section:first-child {
 .postit-top {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 14px;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
 .postit-logo {
-  width: 44px;
-  height: 44px;
-  padding: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 4px;
   border-radius: 50%;
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 8px rgba(16, 32, 64, 0.1);
 }
 
 .postit-logo img {
@@ -1941,101 +2008,98 @@ html:not(.dark) main>section:first-child {
 
 .postit-company {
   font-family: var(--serif);
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 800;
   letter-spacing: -.01em;
-  color: #1c1a12;
+  color: #16233c;
   line-height: 1.1;
 }
 
 .postit-relation {
   display: inline-flex;
   align-self: flex-start;
-  padding: 5px 12px;
-  border: 1px solid rgba(0, 0, 0, 0.18);
+  padding: 4px 11px;
+  border: 1px solid rgba(37, 99, 235, 0.22);
   border-radius: 100px;
   font-family: var(--mono);
-  font-size: .5rem;
-  letter-spacing: .06em;
+  font-size: .46rem;
+  letter-spacing: .05em;
   text-transform: uppercase;
-  color: rgba(28, 26, 18, 0.75);
-  margin-bottom: 14px;
+  color: #2b4a8a;
+  margin-bottom: 12px;
 }
 
 .postit-quote {
   position: absolute;
-  top: 26px;
-  right: 34px;
+  top: 20px;
+  right: 26px;
   font-family: var(--serif);
-  font-size: 4.6rem;
+  font-size: 3.4rem;
   line-height: 1;
-  color: rgba(0, 0, 0, 0.14);
+  color: rgba(37, 99, 235, 0.14);
   pointer-events: none;
 }
 
 .postit-copy {
   flex: 1;
   overflow-y: auto;
-  font-size: .86rem;
-  line-height: 1.55;
-  color: rgba(28, 26, 18, 0.88);
-  padding-right: 6px;
+   font-size: .90rem;
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+  scrollbar-color: rgba(37, 99, 235, 0.35) transparent;
 }
 
 .postit-copy::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 
 .postit-copy::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(37, 99, 235, 0.3);
   border-radius: 10px;
 }
 
 .postit-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 16px;
+  gap: 6px;
+  margin-top: 12px;
 }
 
 .ptag2 {
   font-family: var(--mono);
-  font-size: .48rem;
-  letter-spacing: .1em;
+  font-size: .42rem;
+  letter-spacing: .08em;
   text-transform: uppercase;
-  padding: 5px 10px;
-  border: 1px solid rgba(0, 0, 0, 0.18);
+  padding: 4px 9px;
+  border: 1px solid rgba(37, 99, 235, 0.25);
   border-radius: 100px;
-  color: rgba(28, 26, 18, 0.75);
-  background: rgba(255, 255, 255, 0.28);
+  color: #2b4a8a;
+  background: rgba(37, 99, 235, 0.07);
 }
 
 .postit-bottom {
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px dashed rgba(0, 0, 0, 0.22);
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(37, 99, 235, 0.28);
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
 }
 
 .postit-name {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 1.05rem;
+  font-size: .92rem;
   font-weight: 700;
-  color: #1c1a12;
+  color: #16233c;
   letter-spacing: -.01em;
 }
 
 .postit-date {
   font-family: var(--mono);
-  font-size: .56rem;
-  letter-spacing: .06em;
-  color: rgba(28, 26, 18, 0.6);
+  font-size: .5rem;
+  letter-spacing: .05em;
+  color: rgba(22, 35, 60, 0.55);
   white-space: nowrap;
 }
 
@@ -2087,6 +2151,40 @@ html:not(.dark) main>section:first-child {
 .rec-counter span {
   color: var(--accent);
   font-weight: 700;
+}
+
+/* ── End animation: bounce + halo when final card reached ── */
+.rec-track.rec-end .postit.is-active {
+  animation: recPostitBounce 720ms cubic-bezier(.2,.9,.3,1) 1;
+  position: relative;
+  z-index: 12;
+}
+
+.rec-track.rec-end .postit.is-active::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: -12px;
+  right: -12px;
+  bottom: -12px;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(75,126,255,0.18), 0 0 36px rgba(75,126,255,0.08) inset;
+  pointer-events: none;
+  opacity: 0;
+  animation: recHalo 1600ms ease-out 0s 1;
+}
+
+@keyframes recPostitBounce {
+  0% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(-18px) scale(1.03); }
+  60% { transform: translateY(6px) scale(1.02); }
+  100% { transform: translateY(0) scale(1.035); }
+}
+
+@keyframes recHalo {
+  0% { opacity: 0; transform: scale(.9); }
+  40% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.08); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2380,9 +2478,11 @@ footer {
 
   .rec-slide {
     flex: none;
+    flex-direction: column;
     width: 100% !important;
     height: auto !important;
     padding: 0;
+    gap: 24px;
   }
 
   .postit {
