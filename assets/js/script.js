@@ -500,7 +500,7 @@
   })();
 
   /* ━━ RECOMMENDATIONS — SCROLL-DRIVEN POST-IT BOARD (same technique as Selected Works) ━━ */
-  const RN = 3;
+  const RN = 4;
   const recScroll = document.getElementById('rec-scroll');
   const recTrack = document.getElementById('rec-track');
   const recFill = document.getElementById('recFill');
