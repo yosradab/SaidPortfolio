@@ -104,19 +104,22 @@
   /* ━━ CURSOR ━━ */
   const cur = document.getElementById('cur');
   const ring = document.getElementById('curRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
-  (function animRing() {
-    rx += (mx - rx) * .12;
-    ry += (my - ry) * .12;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(animRing);
-  })();
-  document.querySelectorAll('a,button,.hstat,.spec-item,.skcard,.cert-card,.edu-card,.img-wrap').forEach(el => {
-    el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(2)'; ring.style.opacity = '.25'; });
-    el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '.45'; });
-  });
+  const hasRealCursor = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (hasRealCursor) {
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
+    (function animRing() {
+      rx += (mx - rx) * .12;
+      ry += (my - ry) * .12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    })();
+    document.querySelectorAll('a,button,.hstat,.spec-item,.skcard,.cert-card,.edu-card,.img-wrap').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(2)'; ring.style.opacity = '.25'; });
+      el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '.45'; });
+    });
+  }
 
   /* ━━ SCROLL PROGRESS BAR ━━ */
   const pb = document.getElementById('pb');
@@ -368,6 +371,10 @@
   (() => {
     const canvas = document.getElementById('particles-canvas');
     if (!canvas) return;
+    // Respect prefers-reduced-motion: don't run the particle field at all.
+    // The canvas is also hidden via CSS for this case; skipping the JS too
+    // avoids burning CPU/battery on a hidden element.
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const ctx = canvas.getContext('2d');
     let W, H, pts = [];
 
